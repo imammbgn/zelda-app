@@ -1,0 +1,121 @@
+[
+    {
+        "id" : "1",
+        "img" : "https://media.istockphoto.com/id/1343896968/id/foto/gaun-kuning-pendek-dengan-sabuk-terisolasi-pada-putih-tampilan-atas.jpg?s=612x612&w=0&k=20&c=VCZGYkln2Bw_bMJpkh5B8wLonmZKpklSVLUj7STQ4pk=",
+        "name" : "Sunflower Dress",
+        "price" : 249000,
+        "categories" : "dress"
+    },
+    {
+        "id" : "2",
+        "img" : "https://media.istockphoto.com/id/507191779/id/foto/tas-kulit-buaya-coklat-terisolasi.jpg?s=612x612&w=0&k=20&c=83xJJiiFaF1RnPc_KsRiLifgsFJUSdJwh-NDx-BHiEI=",
+        "name" : "Rockabily Ruse",
+        "price" : 349999,
+        "categories" : "bag"
+    },
+    {
+        "id" : "3",
+        "img" : "https://media.istockphoto.com/id/1445005558/id/foto/manekin-hantu.jpg?s=612x612&w=0&k=20&c=8gkPlOdDcXfeYEG5MVhZEPN0gSBiipOcrq-Se6KV_o0=",
+        "name" : "Volva Longshirt",
+        "price" : 149999,
+        "categories" : "clothing"
+    },
+    {
+        "id" : "4",
+        "img" : "https://media.istockphoto.com/id/964762332/id/foto/wanita-terisolasi-jam-tangan-emas.jpg?s=612x612&w=0&k=20&c=rAojfhQzyLunnbY338MI2IQeSADm23MidUWDNZlXdZA=",
+        "name" : "Daniel Watch",
+        "price" : 799999,
+        "categories" : "watch"
+    },
+    {
+        "id" : "5",
+        "img" : "https://media.istockphoto.com/id/895454698/id/foto/rok-musim-panas-oranye-dengan-tombol-terisolasi-di-atas-putih.jpg?s=612x612&w=0&k=20&c=-nXDAbXSN_wj8fIyJZMkM9VIshChySLslRZLhdkd-N0=",
+        "name" : "Yellow Twelvemonth",
+        "price" : 119999,
+        "categories" : "clothing"
+    },
+    {
+        "id" : "6",
+        "img" : "https://media.istockphoto.com/id/1399908324/id/foto/kemeja-batik-wanita-dengan-lengan-sedang-potongan-sederhana-dan-sopan.jpg?s=612x612&w=0&k=20&c=TQ7MJ2mLGlxXmLQzJXZPyeQvBhd6ZwdRJgGMf3w5NA8=",
+        "name" : "Javanese Shirt",
+        "price" : 79999,
+        "categories" : "clothing"
+    },
+    {
+        "id" : "7",
+        "img" : "https://media.istockphoto.com/id/1144939595/id/foto/tas-dengan-konsep-di-latar-belakang.jpg?s=612x612&w=0&k=20&c=I3EG3b1_vEYGehcBeVl2QycqJ_IQsQZkK3iUGSsR8DY=",
+        "name" : "Velvet Bag",
+        "price" : 349999,
+        "categories" : "bag"
+    },
+    {
+        "id" : "8",
+        "img" : "https://media.istockphoto.com/id/538189958/id/foto/kacamata-hitam.jpg?s=612x612&w=0&k=20&c=a-bR2lPQq_YV1eO_cyOp85E0xl2ioegccB8t2N5sknM=",
+        "name" : "Fluid Sunglasses",
+        "price" : 69999,
+        "categories" : "accessories"
+    },
+    {
+        "id" : "9",
+        "img" : "https://media.istockphoto.com/id/669744042/id/foto/jas.jpg?s=612x612&w=0&k=20&c=VLnwSNgihEIZfZ8BxYe4XXvM69RF620SbjxN1uy_dls=",
+        "name" : "Jacket Viraka",
+        "price" : 349999,
+        "categories" : "clothing"
+    },
+    {
+        "id" : "10",
+        "img" : "https://media.istockphoto.com/id/908055296/id/foto/jaket-wanita-bermotif-bunga.jpg?s=612x612&w=0&k=20&c=xXUGfaCnfVMUbqzLMBozKHLTxKDG1jO-LY-cDRXVLy8=",
+        "name" : "Floweria Jacket Parse",
+        "price" : 549999,
+        "categories" : "clothing"
+    }, 
+    {
+        "id" : "11",
+        "img" : "https://media.istockphoto.com/id/1216756356/id/foto/mantel-wanita-hitam.jpg?s=612x612&w=0&k=20&c=ketmJ7gysVa6eflKA7BpWzjuPnabMHIViVETLpcgzJk=",
+        "name" : "Casual Blazer",
+        "price" : 1199000,
+        "categories" : "dress"
+    },
+    {
+        "id" : "12",
+        "img" : "https://media.istockphoto.com/id/1087597788/id/foto/syal-buatan-tangan-terisolasi.jpg?s=612x612&w=0&k=20&c=8fGGKzuU3y7755AehI9Na7qUoOlI98ArytLuQ3fMM4E=",
+        "name" : "Monte Paris Scraf",
+        "price" : 399999,
+        "categories" : "accessories"
+    },
+    {
+        "id" : "13",
+        "img" : "https://media.istockphoto.com/id/945652822/id/foto/mantel-parit-abu-abu-terisolasi-pada-latar-belakang-putih.jpg?s=612x612&w=0&k=20&c=2a26Lqll7VghNj2dmWkJSwoYz4_atYnrzVLxCaJRbUE=",
+        "name" : "Grey Blazer",
+        "price" : 899999,
+        "categories" : "dress"
+    },
+    {
+        "id" : "14",
+        "img" : "https://media.istockphoto.com/id/136913892/id/foto/boot-wanita-bergaya.jpg?s=612x612&w=0&k=20&c=oNMvK3t8ExlAWdEjQqpqdG5k54iY69QC7_y9I6-JS9g=",
+        "name" : "Zara Skinboat",
+        "price" : 699999,
+        "categories" : "accessories"
+    },
+    {
+        "id" : "15",
+        "img" : "https://media.istockphoto.com/id/504337314/id/foto/tas-wanita-terisolasi-di-latar-belakang-putih.jpg?s=612x612&w=0&k=20&c=40TANAqtBKRFGrSI6inDylwUqfVI0xfQzyFgP3FvrDM=",
+        "name" : "Sizu HandBag",
+        "price" : 399999,
+        "categories" : "bag"
+    },
+    {
+        "id" : "16",
+        "img" : "https://media.istockphoto.com/id/692214702/id/foto/atasan-tembaga-dengan-payet-terisolasi-di-latar-belakang-putih.jpg?s=612x612&w=0&k=20&c=g1XukpgpeaDtMtaITxtNhmJlkxNWpJXAHinEsgQFl3E=",
+        "name" : "Ruin Croptop",
+        "price" : 69999,
+        "categories" : "clothing"
+    },
+    {
+        "id" : "17",
+        "img" : "https://media.istockphoto.com/id/522303890/id/foto/rok-jas.jpg?s=612x612&w=0&k=20&c=YOCTqLBBZ7UNJK3YCP4Jfdp7u6pPXhm5OZb2JU8QYSI=",
+        "name" : "Beige Skirt Linear",
+        "price" : 89000,
+        "categories" : "clothing"
+    }
+]

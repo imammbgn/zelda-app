@@ -1,0 +1,53 @@
+import { useEffect, useState } from "react";
+import ArrowRight from "./Button/ArrowRight";
+import ArrowLeft from "./Button/ArrowLeft";
+import Article from "./ListArticle/Article";
+import Article2 from "./ListArticle/Article2";
+
+const Carousel = () => {
+  const slides = [
+    { src: "../public/images/img3.jpg", alt: "women with winter jacket" },
+    { src: "../public/images/img2.jpg", alt: "women with tomato t-shirt" },
+    { src: "../public/images/img4.jpg", alt: "women with hat" },
+  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const LastSide = currentIndex === slides.length - 1;
+      const newIndex = LastSide ? 0 : currentIndex + 1;
+      setCurrentIndex(newIndex);
+    }, 5000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [currentIndex, slides.length]);
+
+  const prevSlide = () => {
+    const FirstSlide = currentIndex === 0;
+    const newIndex = FirstSlide ? slides.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const nextSlide = () => {
+    const LastSide = currentIndex === slides.length - 1;
+    const newIndex = LastSide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+
+  return (
+    <div className="w-full m-auto group mb-10">
+      <div
+        style={{ backgroundImage: `url(${slides[currentIndex].src})` }}
+        className="w-full h-[620px] bg-center bg-cover duration-500"
+        alt={slides[currentIndex].alt}
+      ></div>
+      <Article index={currentIndex} />
+      <Article2 index={currentIndex} />
+      <ArrowLeft onclick={prevSlide} group="group-hover:block" />
+      <ArrowRight onclick={nextSlide} group="group-hover:block" />
+    </div>
+  );
+};
+
+export default Carousel;
