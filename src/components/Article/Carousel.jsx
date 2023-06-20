@@ -39,13 +39,14 @@ const Carousel = () => {
     <div className="w-full m-auto group mb-10">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].src})` }}
-        className="w-full h-[620px] bg-center bg-cover duration-500"
+        className="relative w-full h-[200px] lg:h-[450px] xl:h-[550px] 2xl:h-[620px] bg-center bg-cover duration-500"
         alt={slides[currentIndex].alt}
-      ></div>
-      <Article index={currentIndex} />
-      <Article2 index={currentIndex} />
+      >
+        <Article index={currentIndex} month="May 2023" season="THE WINTER"/>
+        <Article2 index={currentIndex} month="July 2023" season="THE SUMMER"/>
       <ArrowLeft onclick={prevSlide} group="group-hover:block" />
       <ArrowRight onclick={nextSlide} group="group-hover:block" />
+      </div>
     </div>
   );
 };

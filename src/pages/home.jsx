@@ -18,7 +18,7 @@ const Home = () => {
       <Carousel />
       <Card />
       <ListIndex />
-      <ContainerList scroll={containerRef}/>
+      {/* <ContainerList scroll={containerRef}/> */}
       <BannerFooter />
       <Footer />
     </>

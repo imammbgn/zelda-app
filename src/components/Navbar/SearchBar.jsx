@@ -10,7 +10,7 @@ const SearchBar = () => {
     setShowSearch(!isShowSearch);
   };
   return (
-    <div className="relative flex flex-row ml-9">
+    <div className="relative lg:flex hidden flex-row ml-9">
       <label htmlFor="searchIcon" onClick={showSearch}>
         <SearchOutlinedIcon className="cursor-pointer" />
       </label>
@@ -25,7 +25,7 @@ const SearchBar = () => {
       <div
         className={`
       ${!isShowSearch ? "hidden" : "block"}
-      absolute top-9 left-8 flex-col bg-white justify-center items-center w-full rounded-b-xl overflow-hidden`}
+      absolute top-9 left-8 flex-col bg-white justify-center items-center w-full rounded-b-xl overflow-hidden z-10`}
       >
         {data
           .filter((val) => {
