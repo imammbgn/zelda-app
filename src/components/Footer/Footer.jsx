@@ -4,7 +4,7 @@ const Footer = () => {
     
   return (
     <>
-    <footer className="footer p-10 bg-base-200 text-base-content">
+    <footer className="footer p-10 bg-slate-50 text-zinc-800">
     <div>
       <span className="footer-title">Services</span> 
       <a className="link link-hover">Branding</a> 
@@ -26,9 +26,9 @@ const Footer = () => {
       <a className="link link-hover">Cookie policy</a>
     </div>
   </footer> 
-  <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
+  <footer className="footer px-10 py-4 border-t bg-zinc-800 text-zinc-50">
     <div className="items-center grid-flow-col">
-      <p className="font-medium">Zelda Ltd. <br/>Hak Cipta &copy; {year} Nama Perusahaan. All rights reserved.</p>
+      <p className="font-normal">Zelda Ltd. <br/>Hak Cipta &copy; {year} Nama Perusahaan. All rights reserved.</p>
     </div> 
     <div className="md:place-self-center md:justify-self-end">
       <div className="grid grid-flow-col gap-4">

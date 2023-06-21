@@ -14,6 +14,7 @@ const Navbar = ({ onclick }) => {
   const dataLogin = useSelector((state) => state.login.auth);
   const [offCanvas, setOffCanvas] = useState(false);
   const [totalQty, setTotalQty] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,15 +43,28 @@ const Navbar = ({ onclick }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  useEffect(() => {
+    const handleScroll = () =>{
+      const currentPosition = window.pageYOffset
+      setScrollPosition(currentPosition)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+
+  },[])
+
   return (
-    <nav className="sticky top-0 w-full bg-slate-50 z-50">
-      <div className="flex w-full justify-between items-center h-20 lg:h-24 lg:max-w-[1240px] md:w-auto mx-auto px-7 bg-slate-50 z-10">
+    <nav className={`sticky top-0 w-full transition-all duration-500 ${scrollPosition > 30 ? "bg-zinc-800" : "bg-slate-50"} z-50`}>
+      <div className={`flex w-full justify-between items-center h-20 lg:h-[86px] min-[1440px]:h-28 lg:max-w-[1240px] md:w-auto mx-auto px-7 transition-all duration-500 ${scrollPosition > 30 ? "bg-zinc-800" : "bg-slate-50"} z-10`}>
         <img
           src="/svg/menu.svg"
           className="lg:hidden w-7"
           onClick={() => setOffCanvas(!offCanvas)}
         />
-        <h1 className="w-auto lg:ml-[50px] font-semibold text-4xl cursor-pointer font-gallient tracking-wide">
+        <h1 className={`w-auto lg:ml-[50px] font-semibold text-4xl cursor-pointer font-gallient tracking-wide ${scrollPosition > 30 && "text-zinc-50"}`}>
           <Link to="/">Zelda</Link>
         </h1>
         <ul className="lg:flex hidden gap-8 mr-5 cursor-pointer">
@@ -58,20 +72,20 @@ const Navbar = ({ onclick }) => {
             <Link
               to="/"
               onClick={scrollToTop}
-              className="px-4 text-sm cursor-pointer"
+              className={`px-4 text-sm cursor-pointer ${scrollPosition > 30 && "text-zinc-50"}`}
             >
               HOME
             </Link>
           </li>
-          <li className="px-4 text-sm cursor-pointer" onClick={onclick}>
+          <li className={`px-4 text-sm cursor-pointer ${scrollPosition > 30 && "text-zinc-50"}`} onClick={onclick}>
             CATEGORIES
           </li>
-          <li className="px-4 text-sm cursor-pointer">ABOUT</li>
+          <li className={`px-4 text-sm cursor-pointer ${scrollPosition > 30 && "text-zinc-50"}`}>ABOUT</li>
         </ul>
         <ul className="flex">
           <Link to={`${totalQty > 0 ? "/cart" : ""}`} className="flex">
             <div className="relative w-content">
-              <ShoppingCartIcon className="cursor-pointer" fontSize="medium" />
+              <ShoppingCartIcon className="cursor-pointer" sx={[scrollPosition > 30 && { color: "white" }]} fontSize="medium" />
               <div
                 className={`${
                   totalQty > 0 ? "flex" : "hidden"
@@ -81,15 +95,15 @@ const Navbar = ({ onclick }) => {
                 {totalQty}
               </div>
             </div>
-            <li className="px-2 text-sm cursor-pointer hidden lg:inline-block mt-1">
+            <li className={`px-2 text-sm cursor-pointer hidden lg:inline-block mt-1 ${scrollPosition > 30 && "text-zinc-50"}`}>
               CART
             </li>
           </Link>
-          <SearchBar />
+          <SearchBar position={scrollPosition}/>
         </ul>
         <div className="hidden lg:flex flex-row justify-center items-center gap-10 px-3 py-3">
           <Link to="/login">
-            <div className="px-2 text-sm font-semibold cursor-pointer tracking-wide">
+            <div className={`px-2 text-sm font-semibold cursor-pointer tracking-wide ${scrollPosition > 30 && "text-zinc-50"}`}>
               {dataLogin
                 ? `HI ${localStorage.getItem("emailUser") || ""}`
                 : "SIGN IN"}

@@ -20,9 +20,12 @@
        url('/fonts/Glitten.woff2') format('woff2');
 }
 
+html{
+  background-color: #ffffff;
+}
+
 body{
     font-family: poppins;
     color: black;
     box-sizing: border-box;
-    background-color: #ffffff;
 }

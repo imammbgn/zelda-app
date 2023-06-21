@@ -95,14 +95,14 @@ const ContainerList = ({ scroll }) => {
           </div>
           <div className={`${!show ? "hidden lg:block" : "hidden"}`}>
             <ArrowCircleRightSharpIcon
-              className="absolute top-[220px] -right-16 mx-5 cursor-pointer opacity-50 hover:opacity-100"
+              className="absolute top-[220px] lg:-right-3 xl:-right-16 mx-5 cursor-pointer opacity-50 hover:opacity-100"
               fontSize="large"
               onClick={toRight}
             />
           </div>
           <div className={`${!show ? "hidden lg:block" : "hidden"}`}>
             <ArrowCircleLeftSharpIcon
-              className="absolute top-[220px] -left-16 mx-5 cursor-pointer opacity-50 hover:opacity-100"
+              className="absolute top-[220px] lg:-left-3 xl:-left-16 mx-5 cursor-pointer opacity-50 hover:opacity-100"
               fontSize="large"
               onClick={toLeft}
             />

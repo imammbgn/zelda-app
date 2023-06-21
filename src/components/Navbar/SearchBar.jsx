@@ -2,7 +2,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useState } from "react";
 import data from "../../TemplateData.json";
 
-const SearchBar = () => {
+const SearchBar = ({ position }) => {
   const [isShowSearch, setShowSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
@@ -12,7 +12,7 @@ const SearchBar = () => {
   return (
     <div className="relative lg:flex hidden flex-row ml-9">
       <label htmlFor="searchIcon" onClick={showSearch}>
-        <SearchOutlinedIcon className="cursor-pointer" />
+        <SearchOutlinedIcon className="cursor-pointer" sx={[position > 30 && { color: "white" }]}  />
       </label>
       <input
         className={`px-2 py-1 h-7 mx-2 input w-full max-w-xs ${
