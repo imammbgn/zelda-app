@@ -6,8 +6,16 @@
 @tailwind utilities;
 
 
+/* @font-face {
+    font-family: 'NamaFont';
+    src: url('/fonts/NamaFont.woff2') format('woff2'),
+         url('/fonts/NamaFont.woff') format('woff'); */
+    /* Tambahkan format font yang sesuai dengan file yang Anda miliki */
+    /* font-weight: normal;
+    font-style: normal;
+  } */
+
 body{
     font-family: poppins;
-    color: #030712;
     box-sizing: border-box;
 }
