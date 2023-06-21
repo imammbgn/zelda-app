@@ -1,5 +1,6 @@
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import SearchBar from "./SearchBar";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,7 +39,7 @@ const Navbar = ({ onclick }) => {
     }
   };
 
-  function scrollToTop(e) {
+  const scrollToTop = (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -59,11 +60,9 @@ const Navbar = ({ onclick }) => {
   return (
     <nav className={`sticky top-0 w-full transition-all duration-500 ${scrollPosition > 30 ? "bg-zinc-800" : "bg-slate-50"} z-50`}>
       <div className={`flex w-full justify-between items-center h-20 lg:h-[86px] min-[1440px]:h-28 lg:max-w-[1240px] md:w-auto mx-auto px-7 transition-all duration-500 ${scrollPosition > 30 ? "bg-zinc-800" : "bg-slate-50"} z-10`}>
-        <img
-          src="/svg/menu.svg"
-          className="lg:hidden w-7"
-          onClick={() => setOffCanvas(!offCanvas)}
-        />
+      <div className="lg:hidden">
+      <MenuRoundedIcon onClick={() => setOffCanvas(!offCanvas)} sx={[scrollPosition > 30 && { color: "white" }]} fontSize="medium"/>
+      </div>
         <h1 className={`w-auto lg:ml-[50px] font-semibold text-4xl cursor-pointer font-gallient tracking-wide ${scrollPosition > 30 && "text-zinc-50"}`}>
           <Link to="/">Zelda</Link>
         </h1>
@@ -83,6 +82,7 @@ const Navbar = ({ onclick }) => {
           <li className={`px-4 text-sm cursor-pointer ${scrollPosition > 30 && "text-zinc-50"}`}>ABOUT</li>
         </ul>
         <ul className="flex">
+          <li>
           <Link to={`${totalQty > 0 ? "/cart" : ""}`} className="flex">
             <div className="relative w-content">
               <ShoppingCartIcon className="cursor-pointer" sx={[scrollPosition > 30 && { color: "white" }]} fontSize="medium" />
@@ -95,11 +95,14 @@ const Navbar = ({ onclick }) => {
                 {totalQty}
               </div>
             </div>
-            <li className={`px-2 text-sm cursor-pointer hidden lg:inline-block mt-1 ${scrollPosition > 30 && "text-zinc-50"}`}>
+            <p className={`px-2 text-sm cursor-pointer hidden lg:inline-block mt-1 ${scrollPosition > 30 && "text-zinc-50"}`}>
               CART
-            </li>
+            </p>
           </Link>
+          </li>
+          <li>
           <SearchBar position={scrollPosition}/>
+          </li>
         </ul>
         <div className="hidden lg:flex flex-row justify-center items-center gap-10 px-3 py-3">
           <Link to="/login">
@@ -137,13 +140,14 @@ const Navbar = ({ onclick }) => {
           />
           <img
             src="/svg/close.svg"
+            alt="close-icon"
             className="w-8"
             onClick={() => setOffCanvas(!offCanvas)}
           />
         </div>
         <ul className="flex flex-col gap-14 mt-12 justify-center items-center">
-          <li className="text-3xl  font-medium text-slate-50">
-            <Link to="/" onClick={() => {scrollToTop, setOffCanvas(!offCanvas)}}>
+          <li className="text-3xl font-medium text-slate-50">
+            <Link to="/" onClick={() => {setOffCanvas(!offCanvas), scrollToTop}}>
               HOME
             </Link>
           </li>
@@ -156,7 +160,7 @@ const Navbar = ({ onclick }) => {
             CATEGORIES
           </li>
           <li className="text-3xl  font-medium text-slate-50">ABOUT</li>
-
+          <li>
           <div className="text-3xl cursor-pointer tracking-wide font-medium text-slate-50">
             <Link to="/login">
               {dataLogin
@@ -164,6 +168,8 @@ const Navbar = ({ onclick }) => {
                 : "LOGIN"}
             </Link>
           </div>
+          </li>
+
         </ul>
       </div>
     </nav>

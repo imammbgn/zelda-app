@@ -54,7 +54,7 @@ const ContainerList = ({ scroll }) => {
           <summary className="m-1 py-1 px-8 rounded-md justify-center items-center text-center bg-neutral-focus text-slate-100">
             Filter
           </summary>
-          <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 gap-2">
+          <ul className="p-2 shadow menu dropdown-content z-[1] bg-slate-50 rounded-box w-52 gap-2">
             <ListNav tab="false" onclick={() => filterData("")}>
               All Products
             </ListNav>

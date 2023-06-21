@@ -73,7 +73,7 @@ const FormLogin = () => {
           onClick={loginWithGoogle}
         >
           <img
-            src="../public/logos/google.png"
+            src="/logos/google.png"
             alt="googlelogo"
             className="w-6 h-6 self-start"
           />
