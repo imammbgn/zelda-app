@@ -6,16 +6,23 @@
 @tailwind utilities;
 
 
-/* @font-face {
-    font-family: 'NamaFont';
-    src: url('/fonts/NamaFont.woff2') format('woff2'),
-         url('/fonts/NamaFont.woff') format('woff'); */
-    /* Tambahkan format font yang sesuai dengan file yang Anda miliki */
-    /* font-weight: normal;
-    font-style: normal;
-  } */
+@font-face {
+  font-family: 'Gallient';
+  src: local('Gallient'),
+       url('/fonts/Gallient.woff') format('woff'),
+       url('/fonts/Gallient.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'glitten';
+  src: local('glitten'),
+       url('/fonts/Glitten.woff') format('woff'),
+       url('/fonts/Glitten.woff2') format('woff2');
+}
 
 body{
     font-family: poppins;
+    color: black;
     box-sizing: border-box;
+    background-color: #ffffff;
 }
