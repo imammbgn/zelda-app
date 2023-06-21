@@ -10,7 +10,7 @@ const CartContainer = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center max-w-[1340px] md:w-auto mx-auto px-3">
+    <div className="flex flex-col justify-center items-center lg:max-w-[1024px] md:w-auto mx-auto px-3">
       <div>
       </div>
       <h1 className="text-3xl font-medium mt-10 mb-20">Your Cart</h1>

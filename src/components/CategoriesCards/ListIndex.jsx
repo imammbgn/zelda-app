@@ -16,7 +16,7 @@ const ListIndex = () => {
   return (
     <>
     <div className="relative w-full">
-    <div className="flex flex-col lg:flex-row h-full md:h-[560px] gap-10 md:gap-0 lg:max-w-[1240px] justify-center lg:justify-evenly items-center mx-auto mb-16">
+    <div className="flex flex-col lg:flex-row h-full gap-10 md:gap-8 lg:max-w-[1240px] justify-center lg:justify-evenly items-center mx-auto mb-16">
     <Cards img={{ backgroundImage: `url(${imgItem[0].url})` }} text="ACCESSORIES"/>
     <Cards img={{ backgroundImage: `url(${imgItem[1].url})` }} text="WOMENS SET"/>
     <Cards img={{ backgroundImage: `url(${imgItem[2].url})` }} text="BAG'S"/>

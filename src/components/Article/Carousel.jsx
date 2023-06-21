@@ -6,9 +6,9 @@ import Article2 from "./ListArticle/Article2";
 
 const Carousel = () => {
   const slides = [
-    { src: "../public/images/img3.jpg", alt: "women with winter jacket" },
-    { src: "../public/images/img2.jpg", alt: "women with tomato t-shirt" },
-    { src: "../public/images/img4.jpg", alt: "women with hat" },
+    { src: "/images/img3.jpg", alt: "women with winter jacket" },
+    { src: "/images/img2.jpg", alt: "women with tomato t-shirt" },
+    { src: "/images/img4.jpg", alt: "women with hat" },
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -36,10 +36,10 @@ const Carousel = () => {
   };
 
   return (
-    <div className="w-full m-auto group mb-10">
+    <div className="relative w-full m-auto group mb-10">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].src})` }}
-        className="relative w-full h-[200px] lg:h-[450px] xl:h-[550px] 2xl:h-[620px] bg-center bg-cover duration-500"
+        className="w-full h-[200px] md:h-[300px] lg:h-[450px] xl:h-[550px] 2xl:h-[620px] bg-center bg-cover duration-500"
         alt={slides[currentIndex].alt}
       >
         <Article index={currentIndex} month="May 2023" season="THE WINTER"/>

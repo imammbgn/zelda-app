@@ -6,7 +6,7 @@ import TemplateCard from "./TemplateCard";
 
 const Card = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-evenly gap-2 items-center lg:h-[300px] lg:max-w-[1240px] mx-auto px-7 mb-16">
+    <div className="flex flex-wrap lg:flex-nowrap justify-center lg:justify-evenly gap-3 lg:gap-5 items-start lg:h-[300px] lg:max-w-[1240px] mx-auto lg:px-7 mb-16">
       <TemplateCard
         icon={<LocalShippingOutlinedIcon fontSize="large" />}
         h1="Free Delivery"

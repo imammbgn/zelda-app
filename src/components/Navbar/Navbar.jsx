@@ -37,27 +37,36 @@ const Navbar = ({ onclick }) => {
     }
   };
 
+  function scrollToTop(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
-    <nav>
-      <div className="flex w-full justify-between items-center h-24 lg:max-w-[1024px] md:w-auto mx-auto px-7">
+    <nav className="sticky top-0 w-full bg-slate-50 z-50">
+      <div className="flex w-full justify-between items-center h-20 lg:h-24 lg:max-w-[1240px] md:w-auto mx-auto px-7 bg-slate-50 z-10">
         <img
-          src="../public/svg/menu.svg"
+          src="/svg/menu.svg"
           className="lg:hidden w-7"
           onClick={() => setOffCanvas(!offCanvas)}
         />
-        <Link to="/" className="mt-3 lg:mt-0">
-          <h1 className="w-auto lg:ml-[50px] font-semibold text-4xl cursor-pointer font-gallient tracking-wide">
-            Zelda
-          </h1>
-        </Link>
+        <h1 className="w-auto lg:ml-[50px] font-semibold text-4xl cursor-pointer font-gallient tracking-wide">
+          <Link to="/">Zelda</Link>
+        </h1>
         <ul className="lg:flex hidden gap-8 mr-5 cursor-pointer">
-          <Link to="/">
-            <li className="px-4 text-sm cursor-pointer">Home</li>
-          </Link>
-          <li className="px-4 text-sm cursor-pointer" onClick={onclick}>
-            Categories
+          <li>
+            <Link
+              to="/"
+              onClick={scrollToTop}
+              className="px-4 text-sm cursor-pointer"
+            >
+              HOME
+            </Link>
           </li>
-          <li className="px-4 text-sm cursor-pointer">About</li>
+          <li className="px-4 text-sm cursor-pointer" onClick={onclick}>
+            CATEGORIES
+          </li>
+          <li className="px-4 text-sm cursor-pointer">ABOUT</li>
         </ul>
         <ul className="flex">
           <Link to={`${totalQty > 0 ? "/cart" : ""}`} className="flex">
@@ -72,7 +81,9 @@ const Navbar = ({ onclick }) => {
                 {totalQty}
               </div>
             </div>
-            <li className="px-2 text-sm cursor-pointer hidden lg:inline-block mt-1">Cart</li>
+            <li className="px-2 text-sm cursor-pointer hidden lg:inline-block mt-1">
+              CART
+            </li>
           </Link>
           <SearchBar />
         </ul>
@@ -103,7 +114,7 @@ const Navbar = ({ onclick }) => {
         }`}
       >
         <div className="flex flex-row items-center justify-between px-5">
-          <SearchOutlinedIcon fontSize="large" style={{fill: "white"}}/>
+          <SearchOutlinedIcon fontSize="large" style={{ fill: "white" }} />
           <input
             type="text"
             id="search"
@@ -111,26 +122,34 @@ const Navbar = ({ onclick }) => {
             className="w-9/12 h-12 text-xl px-3 py-2 rounded-lg"
           />
           <img
-            src="../public/svg/close.svg"
+            src="/svg/close.svg"
             className="w-8"
             onClick={() => setOffCanvas(!offCanvas)}
           />
         </div>
         <ul className="flex flex-col gap-14 mt-12 justify-center items-center">
-          <Link to="/">
-            <li className="text-3xl  font-medium text-slate-50">HOME</li>
-          </Link>
-          <li className="text-3xl  font-medium text-slate-50" onClick={onclick}>
+          <li className="text-3xl  font-medium text-slate-50">
+            <Link to="/" onClick={() => {scrollToTop, setOffCanvas(!offCanvas)}}>
+              HOME
+            </Link>
+          </li>
+          <li
+            className="text-3xl  font-medium text-slate-50"
+            onClick={() => {
+              setOffCanvas(!offCanvas), onclick();
+            }}
+          >
             CATEGORIES
           </li>
           <li className="text-3xl  font-medium text-slate-50">ABOUT</li>
-          <Link to="/login">
-            <div className="text-3xl cursor-pointer tracking-wide font-medium text-slate-50">
+
+          <div className="text-3xl cursor-pointer tracking-wide font-medium text-slate-50">
+            <Link to="/login">
               {dataLogin
                 ? `HI ${localStorage.getItem("emailUser") || ""}`
                 : "LOGIN"}
-            </div>
-          </Link>
+            </Link>
+          </div>
         </ul>
       </div>
     </nav>

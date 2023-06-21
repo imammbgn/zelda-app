@@ -17,8 +17,8 @@ const DisplayDetail = ({ name, price, id }) => {
 
   return (
     <>
-    <div className="flex flex-col items-center max-w-[300px] mb-10">
-        <h2 className="font-semibold mb-1 text-xl text-center cursor-pointer">{name}</h2>
+    <div className="flex flex-col items-center lg:max-w-[300px] lg:mb-10">
+        <h2 className="font-semibold flex-wrap mb-1 lg:text-xl text-center cursor-pointer">{name}</h2>
         <p className="text-md cursor-pointer mb-2">{price}</p>
         <DisplayBtn onclick={() => PopupAlert()}/>
     </div>

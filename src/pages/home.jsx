@@ -9,16 +9,24 @@ import BannerFooter from "../components/Banner/BannerFooter";
 
 const Home = () => {
   const containerRef = useRef(null)
-  const scrollTo = () => {
-    containerRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  function scrollToTargetAdjusted(){
+    const element = containerRef.current
+    const headerOffset = 110;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
+}
   return (
     <>
-      <Navbar onclick={scrollTo} />
+      <Navbar onclick={scrollToTargetAdjusted}/>
       <Carousel />
       <Card />
       <ListIndex />
-      {/* <ContainerList scroll={containerRef}/> */}
+      <ContainerList scroll={containerRef}/>
       <BannerFooter />
       <Footer />
     </>

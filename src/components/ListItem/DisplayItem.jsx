@@ -7,8 +7,8 @@ const DisplayItem = ({ datas }) => {
       {datas &&
         datas.map((data) => {
           return (
-            <div className="flex flex-col items-center" key={data.id}>
-              <div className="relative w-[280px] h-[300px] mb-5 shadow-xl shadow-gray-200 overflow-hidden cursor-pointer">
+            <div className="flex flex-col w-4/12 lg:w-3/12 items-center" key={data.id}>
+              <div className="flex justify-center relative w-[180px] h-[200px] lg:w-[275px] lg:h-[300px] mb-5 shadow-xl shadow-gray-200 overflow-hidden cursor-pointer">
                 <div
                   className="w-full h-full bg-center bg-cover scale-110"
                   style={{
