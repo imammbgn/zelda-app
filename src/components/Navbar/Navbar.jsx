@@ -2,13 +2,10 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import SearchBar from "./SearchBar";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { signOut } from "firebase/auth";
-import { auth } from "../../config/Firebase/firebase-config";
-import { isLogin } from "../../redux/actions/loginSlice";
-import { resetCart } from "../../redux/actions/cartSlice";
+import AuthContext from "../../config/auth/AuthContext";
 
 const Navbar = ({ onclick }) => {
   const cart = useSelector((state) => state.cart.data);
@@ -17,8 +14,7 @@ const Navbar = ({ onclick }) => {
   const [totalQty, setTotalQty] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0)
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const auth = AuthContext()
 
   useEffect(() => {
     const cartQty = cart
@@ -27,16 +23,8 @@ const Navbar = ({ onclick }) => {
     setTotalQty(cartQty);
   }, [cart]);
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      dispatch(isLogin(false));
-      dispatch(resetCart(0));
-      localStorage.clear("emailUsers");
-      navigate("/login");
-    } catch (err) {
-      console.error(err);
-    }
+  const handleLogout = () => {
+    auth.useLogout()
   };
 
   const scrollToTop = (e) => {

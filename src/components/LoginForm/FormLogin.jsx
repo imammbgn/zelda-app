@@ -2,46 +2,27 @@ import ForgetPass from "./Elements/ForgetPass";
 import Input from "./Elements/Input";
 import Button from "./Elements/Button";
 import ToRegister from "./Elements/ToRegister";
-import { auth, googleProvider } from "../../config/Firebase/firebase-config";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { isLogin } from "../../redux/actions/loginSlice";
-import { useNavigate } from "react-router-dom";
+import AuthContext from "../../config/auth/AuthContext";
 
 const FormLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isIncorrect, setIsIncorrect] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const handleLoginUsers = async (e) => {
+  const auth = AuthContext()
+
+  const handleLoginUsers = (e) => {
     e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      dispatch(isLogin(true));
-      localStorage.setItem("emailUser", email)
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-      setIsIncorrect(!isIncorrect);
-    }
+    auth.useLogin(email, password)
   };
 
-  const loginWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      dispatch(isLogin(true));
-      navigate("/");
-    } catch (err) {
-      console.error(err);
-    }
+  const loginWithGoogle = () => {
+    auth.useLoginWithGoogle()
   };
 
   return (
     <form onSubmit={handleLoginUsers}>
-      <div className="bg-zinc-100 flex flex-col justify-center items-center w-[500px] h-[600px] py-14 px-16">
+      <div className="bg-zinc-100 flex flex-col justify-center items-center md:w-[500px] md:h-[600px] py-8 px-6 md:py-14 md:px-16">
         <h1 className="text-6xl font-gallient mb-8">Zelda</h1>
         <p className="text-1xl font-normal tracking-widest text-zinc-600">
           Welcome To Zelda
@@ -63,9 +44,9 @@ const FormLogin = () => {
         <div className="flex w-full max-w-[320px] justify-end mt-1">
           <ForgetPass />
         </div>
-        {isIncorrect && (
+        {!auth.isIncorrect ? null :
           <p className="text-red-600 mt-3">username or password incorrect!</p>
-        )}
+        }
         <Button type="submit">SIGN IN</Button>
         <ToRegister />
         <div

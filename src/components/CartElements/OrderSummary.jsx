@@ -2,7 +2,7 @@ import { ToRupiah } from "../utils/RupiahConvert"
 
 const OrderSummary = ({ total }) => {
   return (
-    <div className="w-[450px] h-[350px]">
+    <div className="w-12/12 md:w-[450px] md:h-[350px]">
           <div className=" bg-zinc-200 px-10 py-10 flex flex-col">
             <div className="flex items-center w-full h-12 border-b-2 border-slate-700">
               <h1 className="text-2xl">Order Summary</h1>
@@ -25,7 +25,7 @@ const OrderSummary = ({ total }) => {
               <p className="text-2xl font-semibold">Rp{" "}{ToRupiah(total)}</p>
             </div>
           </div>
-          <div className="w-[450px] h-[60px] bg-zinc-800 mt-4 flex items-center justify-center cursor-pointer">
+          <div className="w-12/12 h-12 md:w-[450px] md:h-[60px] bg-zinc-800 mt-4 mb-10 flex items-center justify-center cursor-pointer">
             <h1 className="text-2xl text-slate-100 tracking-wider">CHECKOUT</h1>
           </div>
         </div>

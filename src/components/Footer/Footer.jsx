@@ -28,7 +28,7 @@ const Footer = () => {
   </footer> 
   <footer className="footer px-10 py-4 border-t bg-zinc-800 text-zinc-50">
     <div className="items-center grid-flow-col">
-      <p className="font-normal">Zelda Ltd. <br/>Hak Cipta &copy; {year} Nama Perusahaan. All rights reserved.</p>
+      <p className="font-normal tracking-wider">Design From Envyktl. <br/>Hak Cipta &copy; {year} All rights reserved.</p>
     </div> 
     <div className="md:place-self-center md:justify-self-end">
       <div className="grid grid-flow-col gap-4">

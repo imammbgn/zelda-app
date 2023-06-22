@@ -60,7 +60,7 @@ const TableCart = ({ totalState }) => {
       <thead>
         <tr className="flex flex-row">
           <th className="basis-1/2 text-start">Product</th>
-          <th className="basis-1/4">Price</th>
+          <th className="hidden md:block basis-1/4">Price</th>
           <th className="basis-1/4">Quantity</th>
           <th className="basis-1/4">Total</th>
         </tr>
@@ -84,7 +84,7 @@ const TableCart = ({ totalState }) => {
             >
               <tr className="h-[120px] flex flex-row items-center">
                 <td className="basis-1/2 flex flex-row items-center">
-                  <div className="h-[120px] w-[90px] bg-slate-100">
+                  <div className="md:h-[120px] md:w-[90px] w-[70px] h-[90px] bg-slate-100">
                     <div
                       className="w-full h-full bg-center bg-cover"
                       style={{ backgroundImage: `url(${product.img})` }}
@@ -92,11 +92,11 @@ const TableCart = ({ totalState }) => {
                   </div>
                   <h1 className="ml-6 text-xl font-medium">{product.name}</h1>
                 </td>
-                <td className="basis-1/4 text-center font-medium">
+                <td className="hidden lg:block basis-1/4 text-center font-medium">
                   Rp {ToRupiah(product.price)}
                 </td>
                 <td className="basis-1/4 justify-center flex">
-                  <div className="w-[100px] h-8 rounded-full bg-slate-100 flex justify-between items-center px-2">
+                  <div className="w-[65px] h-6 md:w-[100px] md:h-8 rounded-full bg-slate-100 flex justify-between items-center px-2">
                     <button onClick={() => handleCount(product.id, -1)}>
                       -
                     </button>
@@ -106,7 +106,7 @@ const TableCart = ({ totalState }) => {
                     </button>
                   </div>
                 </td>
-                <td className="basis-1/4 text-center font-medium">
+                <td className="basis-1/4 text-center font-medium text-xs md:text-lg">
                   Rp {ToRupiah(product.total)}
                 </td>
               </tr>

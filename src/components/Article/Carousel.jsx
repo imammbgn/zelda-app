@@ -4,7 +4,7 @@ import ArrowLeft from "./Button/ArrowLeft";
 import Article from "./ListArticle/Article";
 import Article2 from "./ListArticle/Article2";
 
-const Carousel = () => {
+const Carousel = ({ onclick }) => {
   const slides = [
     { src: "/images/img3.jpg", alt: "women with winter jacket" },
     { src: "/images/img2.jpg", alt: "women with tomato t-shirt" },
@@ -42,8 +42,8 @@ const Carousel = () => {
         className="w-full h-[200px] md:h-[300px] lg:h-[450px] xl:h-[550px] 2xl:h-[620px] bg-center bg-cover duration-500"
         alt={slides[currentIndex].alt}
       >
-        <Article index={currentIndex} month="May 2023" season="THE WINTER"/>
-        <Article2 index={currentIndex} month="July 2023" season="THE SUMMER"/>
+        <Article index={currentIndex} onclick={onclick} month="April 2023" season="THE WINTER"/>
+        <Article2 index={currentIndex} onclick={onclick} month="June 2023" season="THE SUMMER"/>
       <ArrowLeft onclick={prevSlide} group="group-hover:block" />
       <ArrowRight onclick={nextSlide} group="group-hover:block" />
       </div>

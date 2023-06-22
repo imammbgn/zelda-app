@@ -1,18 +1,16 @@
 import Input from "./Elements/Input";
 import Button from "./Elements/Button";
 import { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import AuthContext from "../../config/auth/AuthContext.jsx"
 
 const FormRegister = () => {
-  const [usersAuth, setUsersAuth] = useState("")
   const [emailUsers, setEmailUsers] = useState("");
   const [passwordUsers, setPasswordUsers] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showValidate, setShowValidate] = useState(false);
   const regexPass = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-  const navigate = useNavigate()
+  const auth = AuthContext()
 
   const submitRegister = (e) => {
     e.preventDefault();
@@ -23,20 +21,8 @@ const FormRegister = () => {
         setShowValidate(showValidate);
       }, 5000);
     } else {
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, emailUsers, passwordUsers)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
-        });
-      setTimeout(() => {
-        navigate("/login")
-      },1000);
+     auth.useRegister(emailUsers, passwordUsers)
+     console.log("SUCCES REGISTER")
     }
   };
 
@@ -52,7 +38,6 @@ const FormRegister = () => {
           type="text"
           id="username"
           htmlFor="username"
-          onchange={(e) => setUsersAuth(e.target.value)}
         />
         <Input
           children="Email"

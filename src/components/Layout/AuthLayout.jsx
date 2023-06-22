@@ -9,12 +9,12 @@ const AuthLayout = (props) => {
     },
   ];
   return (
-    <div className=" relative flex m-auto min-h-screen justify-center items-center bg-gradient-to-r from-zinc-400 via-zinc-100 to-zinc-400 ">
+    <div className="relative flex m-auto min-h-screen justify-center items-center bg-gradient-to-r from-zinc-400 via-zinc-100 to-zinc-400 ">
       {/* <MainBg img={imgLogin[1].url} /> */}
       <div className="flex justify-center items-center">
-        <div className="w-[400px] h-[600px]">
+        <div className="md:w-[400px] md:h-[600px]">
           <div
-            className="w-full h-full bg-center bg-cover"
+            className="hidden md:block w-full h-full bg-center bg-cover"
             style={{
               backgroundImage: `url(${imgLogin[0].url})`,
             }}

@@ -9,7 +9,7 @@ import BannerFooter from "../components/Banner/BannerFooter";
 
 const Home = () => {
   const containerRef = useRef(null)
-  function scrollToTargetAdjusted(){
+  const scrollToTargetAdjusted = () => {
     const element = containerRef.current
     const headerOffset = 110;
     const elementPosition = element.getBoundingClientRect().top;
@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <>
       <Navbar onclick={scrollToTargetAdjusted}/>
-      <Carousel />
+      <Carousel onclick={scrollToTargetAdjusted}/>
       <Card />
       <ListIndex />
       <ContainerList scroll={containerRef}/>
