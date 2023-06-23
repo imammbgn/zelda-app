@@ -56,7 +56,7 @@ const TableCart = ({ totalState }) => {
   }, [products]);
 
   return (
-    <table className="flex flex-col w-full h-[500px]">
+    <table className="flex flex-col w-full h-fit md:h-[500px]">
       <thead>
         <tr className="flex flex-row">
           <th className="basis-1/2 text-start">Product</th>

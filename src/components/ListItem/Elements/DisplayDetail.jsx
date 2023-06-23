@@ -23,7 +23,7 @@ const DisplayDetail = ({ name, price, id }) => {
         <DisplayBtn onclick={() => PopupAlert()}/>
     </div>
     {showPop && (
-      <div className="fixed bottom-10 right-6 z-10">
+      <div className="fixed bottom-10 right-[50%] translate-x-[50%] md:translate-x-0 md:right-6 z-10">
         <div className="rounded-xl px-3 h-[40px] bg-lime-600 flex justify-center items-center shadow-lg duration-500 ease-in-out">
           <p className="font-semibold text-slate-50">Barang Ditambahkan Ke Keranjang</p>
         </div>

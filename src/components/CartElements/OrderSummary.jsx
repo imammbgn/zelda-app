@@ -25,7 +25,7 @@ const OrderSummary = ({ total }) => {
               <p className="text-2xl font-semibold">Rp{" "}{ToRupiah(total)}</p>
             </div>
           </div>
-          <div className="w-12/12 h-12 md:w-[450px] md:h-[60px] bg-zinc-800 mt-4 mb-10 flex items-center justify-center cursor-pointer">
+          <div className="w-full h-12 md:w-[450px] md:h-[60px] bg-zinc-800 mt-4 mb-10 flex items-center justify-center cursor-pointer">
             <h1 className="text-2xl text-slate-100 tracking-wider">CHECKOUT</h1>
           </div>
         </div>
