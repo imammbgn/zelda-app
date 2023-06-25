@@ -13,7 +13,6 @@ const Navbar = ({ onclick }) => {
   const dataLogin = useSelector((state) => state.login.auth);
   const [offCanvas, setOffCanvas] = useState(false);
   const [totalQty, setTotalQty] = useState(0);
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [searchValue, setSearchValue] = useState("");
 
   const auth = AuthContext();
@@ -25,9 +24,24 @@ const Navbar = ({ onclick }) => {
     setTotalQty(cartQty);
   }, [cart]);
 
+  const [isEmptyCart, setIsEmptyCart] = useState(false);
+
+  const toCart = () => {
+    if (totalQty < 1) {
+      setIsEmptyCart(!isEmptyCart)
+      setTimeout(() => {
+        setIsEmptyCart(false)
+      },2500)
+      return clearTimeout()
+    };
+    return null
+  };
+
   const handleLogout = () => {
     auth.useLogout();
   };
+
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   const scrollToTop = (e) => {
     e.preventDefault();
@@ -100,7 +114,7 @@ const Navbar = ({ onclick }) => {
           </li>
         </ul>
         <ul className="flex">
-          <li>
+          <li onClick={toCart}>
             <Link to={`${totalQty > 0 ? "/cart" : ""}`} className="flex">
               <div className="relative w-content">
                 <ShoppingCartIcon
@@ -137,12 +151,12 @@ const Navbar = ({ onclick }) => {
                 scrollPosition > 30 && "text-zinc-50"
               }`}
             >
-              {dataLogin
+              {localStorage.length > 0
                 ? `HI ${localStorage.getItem("emailUser") || ""}`
                 : "SIGN IN"}
             </div>
           </Link>
-          {dataLogin && (
+          {localStorage.length > 0 && (
             <div
               className="bg-zinc-800 text-sm text-white font-semibold tracking-wider
            px-4 py-2 rounded-full cursor-pointer hover:bg-slate-50 hover:text-zinc-800 
@@ -154,6 +168,17 @@ const Navbar = ({ onclick }) => {
           )}
         </div>
       </div>
+
+      {isEmptyCart ? 
+        <div className="fixed top-24 md:top-32 right-[50%] translate-x-[50%] z-10">
+          <div className="w-full rounded-xl px-3 h-[40px] bg-red-600 flex justify-center items-center shadow-lg duration-500 ease-in-out">
+            <p className="font-semibold text-slate-50">
+              Keranjang Kosong
+            </p>
+          </div>
+        </div>
+        : null
+      }
 
       <div
         className={`fixed bg-zinc-900 top-0 h-screen w-full z-10 py-10 transition-all duration-300 ${
@@ -226,11 +251,23 @@ const Navbar = ({ onclick }) => {
           <li>
             <div className="text-3xl cursor-pointer tracking-wide font-medium text-slate-50">
               <Link to="/login">
-                {dataLogin
+                {localStorage.length > 0
                   ? `HI ${localStorage.getItem("emailUser") || ""}`
                   : "LOGIN"}
               </Link>
             </div>
+          </li>
+          <li>
+            {localStorage.length > 0 && (
+              <div
+                className="bg-zinc-800 text-sm text-white font-semibold tracking-wider
+           px-4 py-2 rounded-full cursor-pointer hover:bg-slate-50 hover:text-zinc-800 
+           hover:border-2 hover:border-zinc-800 transition-all duration-300"
+                onClick={handleLogout}
+              >
+                LOGOUT
+              </div>
+            )}
           </li>
         </ul>
       </div>

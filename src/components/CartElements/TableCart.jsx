@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ToRupiah } from "../utils/RupiahConvert";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../redux/actions/cartSlice";
+import { Link } from "react-router-dom";
 
 const TableCart = ({ totalState }) => {
   const cart = useSelector((state) => state.cart.data);
@@ -84,13 +85,15 @@ const TableCart = ({ totalState }) => {
             >
               <tr className="h-[120px] flex flex-row items-center">
                 <td className="basis-1/2 flex flex-row items-center">
+                  <Link to={`/product/${product.id}`}>
                   <div className="md:h-[120px] md:w-[90px] w-[70px] h-[90px] bg-slate-100">
                     <div
                       className="w-full h-full bg-center bg-cover"
                       style={{ backgroundImage: `url(${product.img})` }}
                     ></div>
                   </div>
-                  <h1 className="ml-6 text-xl font-medium">{product.name}</h1>
+                  </Link>
+                  <h1 className="ml-6 text-xl font-medium"><Link to={`/product/${product.id}`}>{product.name}</Link></h1>
                 </td>
                 <td className="hidden lg:block basis-1/4 text-center font-medium">
                   Rp {ToRupiah(product.price)}
