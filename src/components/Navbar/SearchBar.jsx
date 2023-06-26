@@ -1,5 +1,6 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import data from "../../TemplateData.json";
 
 const SearchBar = ({ position }) => {
@@ -39,9 +40,8 @@ const SearchBar = ({ position }) => {
           .map((val) => {
             return (
               <div className="border-b-2 border-slate-200 py-2" key={val.id}>
-                <a className="text-zinc-900 px-2 cursor-pointer">
-                  {val.name}
-                </a>
+                <Link to={`/product/${val.id}`} className="text-zinc-900 px-2 cursor-pointer">
+                  {val.name}</Link>
               </div>
             );
           })}

@@ -10,7 +10,7 @@ import data from "../../TemplateData.json";
 
 const Navbar = ({ onclick }) => {
   const cart = useSelector((state) => state.cart.data);
-  const dataLogin = useSelector((state) => state.login.auth);
+  // const dataLogin = useSelector((state) => state.login.auth); // redux state login
   const [offCanvas, setOffCanvas] = useState(false);
   const [totalQty, setTotalQty] = useState(0);
   const [searchValue, setSearchValue] = useState("");
@@ -28,13 +28,13 @@ const Navbar = ({ onclick }) => {
 
   const toCart = () => {
     if (totalQty < 1) {
-      setIsEmptyCart(!isEmptyCart)
+      setIsEmptyCart(!isEmptyCart);
       setTimeout(() => {
-        setIsEmptyCart(false)
-      },2500)
-      return clearTimeout()
-    };
-    return null
+        setIsEmptyCart(false);
+      }, 2500);
+      return clearTimeout();
+    }
+    return null;
   };
 
   const handleLogout = () => {
@@ -86,14 +86,12 @@ const Navbar = ({ onclick }) => {
           <Link to="/">Zelda</Link>
         </h1>
         <ul className="lg:flex hidden gap-8 mr-5 cursor-pointer">
-          <li>
-            <Link
-              to="/"
-              onClick={scrollToTop}
-              className={`px-4 text-sm cursor-pointer ${
-                scrollPosition > 30 && "text-zinc-50"
-              }`}
-            >
+          <li
+            className={`px-4 text-sm cursor-pointer ${
+              scrollPosition > 30 && "text-zinc-50"
+            }`}
+          >
+            <Link to="/" onClick={scrollToTop}>
               HOME
             </Link>
           </li>
@@ -169,16 +167,13 @@ const Navbar = ({ onclick }) => {
         </div>
       </div>
 
-      {isEmptyCart ? 
+      {isEmptyCart ? (
         <div className="fixed top-24 md:top-32 right-[50%] translate-x-[50%] z-10">
           <div className="w-full rounded-xl px-3 h-[40px] bg-red-600 flex justify-center items-center shadow-lg duration-500 ease-in-out">
-            <p className="font-semibold text-slate-50">
-              Keranjang Kosong
-            </p>
+            <p className="font-semibold text-slate-50">Keranjang Kosong</p>
           </div>
         </div>
-        : null
-      }
+      ) : null}
 
       <div
         className={`fixed bg-zinc-900 top-0 h-screen w-full z-10 py-10 transition-all duration-300 ${
@@ -214,7 +209,7 @@ const Navbar = ({ onclick }) => {
                     key={val.id}
                   >
                     <li className="text-lg border-b-2 border-zinc-200 pb-1 w-full h-full text-center hover:text-zinc-400">
-                      {val.name}
+                      <Link to={`/product/${val.id}`} onClick={() => setOffCanvas(!offCanvas)}>{val.name}</Link>
                     </li>
                   </ul>
                 );

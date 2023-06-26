@@ -7,11 +7,9 @@ const DescriptionProduct = ({ product }) => {
     <h1 className="text-2xl font-semibold mb-1">{product.name}</h1>
     <h2 className="text-xl font-medium mb-5">Rp{" "} {product?.price && ToRupiah(product.price)}</h2>
     <p className="text-left text-sm">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-      inventore corporis doloribus alias accusantium harum id amet quasi
-      animi? Ab cupiditate quae eius rerum deserunt culpa libero? Officia, quam soluta?
+      {product.description}
     </p>
-    <p className="text-sm font-semibold mt-7">Gratis Ongkir.</p>
+    <p className="text-sm font-semibold mt-5">Gratis Ongkir.</p>
   </div>
   )
 }

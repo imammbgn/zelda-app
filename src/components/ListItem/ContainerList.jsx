@@ -21,10 +21,6 @@ const ContainerList = ({ scroll }) => {
     sliderRef.current.scrollLeft = sliderRef.current.scrollLeft + 618;
   };
 
-  const showAllCategory = () => {
-    setShow(!show);
-  };
-
   useEffect(() => {
     setDisplayData(data);
   }, []);
@@ -110,7 +106,7 @@ const ContainerList = ({ scroll }) => {
         </div>
         <button
           className="hidden lg:block w-60 self-center px-7 py-3 mt-6 mb-3 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 text-lg font-montserrat tracking-wide"
-          onClick={showAllCategory}
+          onClick={() => setShow(!show)}
         >
           LOAD MORE
         </button>
