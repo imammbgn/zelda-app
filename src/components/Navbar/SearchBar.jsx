@@ -7,7 +7,7 @@ import SearchIcon from "../ListItem/Elements/SearchIcon";
 const SearchBar = ({ position }) => {
   const [searchValue, setSearchValue] = useState("");
   const searchDebounced = useDebounce(searchValue, 500);
-  const { data } = useGet("http://localhost:3000/products");
+  const { data } = useGet("https://ill-pink-bison-sari.cyclic.app/products");
 
   return (
     <div className="relative lg:flex hidden flex-row mx-5 justify-center items-center mt-1">
