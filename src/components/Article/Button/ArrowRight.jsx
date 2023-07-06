@@ -1,4 +1,4 @@
-import ArrowRightIcon from "/public/svg/ArrowRightIcon.svg"
+import ArrowRightIcon from "/svg/arrowRightIcon.svg"
 
 const ArrowRight = ({ variant, onclick, group, display }) => {
   const variantClasses = {
