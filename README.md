@@ -3,6 +3,9 @@
 # Description
 This project aims to create a small-scale e-commerce platform that showcases fashion brands. The focus is on delivering an attractive and trendy online shopping experience.
 
+## TechStack
+ReactJS, NodeJs, Firebase, TailwindCSS, Redux
+
 The website concept encompasses several key aspects, including:
 
 ### Appealing Design:
