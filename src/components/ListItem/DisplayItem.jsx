@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ToRupiah } from "../utils/RupiahConvert";
 import DisplayDetail from "./Elements/DisplayDetail";
-import "lazysizes"
 
 const DisplayItem = ({ datas }) => {
   return (
@@ -16,8 +15,10 @@ const DisplayItem = ({ datas }) => {
               <Link to={`/product/${data.id}`} preventScrollReset={true} aria-label={data.name}>
                 <div className="flex justify-center relative w-[180px] h-[200px] lg:w-[248px] lg:h-[248px] mb-5 shadow-xl shadow-gray-200 overflow-hidden cursor-pointer">
                   <div
-                    className="w-full h-full bg-center bg-cover scale-110 lazyload"
-                    data-src={data.image}
+                    className="w-full h-full bg-center bg-cover scale-110"
+                    style={{
+                      backgroundImage: `url(${data.image})`,
+                    }}
                   ></div>
                 </div>
               </Link>
