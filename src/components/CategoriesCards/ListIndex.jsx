@@ -1,5 +1,5 @@
 import Cards from "./Cards";
-import Shoes from "/images/shoes.avif"
+import Shoes from "/images/shoes.jpg"
 
 const ListIndex = () => {
   const imgItem = [
