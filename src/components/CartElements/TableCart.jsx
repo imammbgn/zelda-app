@@ -1,9 +1,9 @@
-import data from "../../TemplateData.json";
 import { useState, useEffect } from "react";
 import { ToRupiah } from "../utils/RupiahConvert";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../redux/actions/cartSlice";
 import { Link } from "react-router-dom";
+import useGet from "../../config/api";
 
 const TableCart = ({ totalState }) => {
   const cart = useSelector((state) => state.cart.data);
@@ -11,22 +11,27 @@ const TableCart = ({ totalState }) => {
   const [total, setTotal] = useState([]);
   const dispatch = useDispatch();
 
+  const {data, loading, error} = useGet("https://ill-pink-bison-sari.cyclic.app/products")
+
   useEffect(() => {
     const renderProducts = () => {
-      const updatedProducts = cart.map((item) => {
-        const updateProduct = data.find((data) => data.id === item.id);
-        if (updateProduct) {
-          return {
-            ...updateProduct,
-            qty: item.qty,
-            total: item.qty * updateProduct.price,
-          };
-        }
-      });
-      setProducts(updatedProducts);
+      if (data.length > 0) {
+        const updatedProducts = cart.map((item) => {
+          const updateProduct = data.find((data) => data.id === item.id);
+          if (updateProduct) {
+            return {
+              ...updateProduct,
+              qty: item.qty,
+              total: item.qty * updateProduct.price,
+            };
+          }
+        });
+        setProducts(updatedProducts);
+      }
     };
+
     renderProducts();
-  }, []);
+  }, [cart, data, setProducts]);
 
   const handleCount = (id, value) => {
     const updatedProducts = products.map((item) => {
@@ -71,7 +76,9 @@ const TableCart = ({ totalState }) => {
           <tr className="flex justify-center items-center">
             <td>
               <div className="flex justify-center items-center h-[180px] mx-auto">
-                <h1 className="text-6xl font-thin text-slate-950 text-opacity-20 mr-24">Your Cart Is Empty</h1>
+                <h1 className="text-6xl font-thin text-slate-950 text-opacity-20 mr-24">
+                  Your Cart Is Empty
+                </h1>
               </div>
             </td>
           </tr>
@@ -86,14 +93,16 @@ const TableCart = ({ totalState }) => {
               <tr className="h-[120px] flex flex-row items-center">
                 <td className="basis-1/2 flex flex-row items-center">
                   <Link to={`/product/${product.id}`}>
-                  <div className="md:h-[120px] md:w-[90px] w-[70px] h-[90px] bg-slate-100">
-                    <div
-                      className="w-full h-full bg-center bg-cover"
-                      style={{ backgroundImage: `url(${product.img})` }}
-                    ></div>
-                  </div>
+                    <div className="md:h-[120px] md:w-[90px] w-[70px] h-[90px] bg-slate-100">
+                      <div
+                        className="w-full h-full bg-center bg-cover"
+                        style={{ backgroundImage: `url(${product.image})` }}
+                      ></div>
+                    </div>
                   </Link>
-                  <h1 className="ml-6 text-xl font-medium"><Link to={`/product/${product.id}`}>{product.name}</Link></h1>
+                  <h1 className="ml-6 text-xl font-medium">
+                    <Link to={`/product/${product.id}`}>{product.name}</Link>
+                  </h1>
                 </td>
                 <td className="hidden lg:block basis-1/4 text-center font-medium">
                   Rp {ToRupiah(product.price)}

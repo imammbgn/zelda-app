@@ -54,7 +54,7 @@ const AuthContext = () => {
     try {
         await signOut(auth);
         dispatch(isLogin(false));
-        dispatch(resetCart(0));
+        dispatch(resetCart());
         localStorage.clear("emailUsers");
         navigate("/login");
       } catch (err) {

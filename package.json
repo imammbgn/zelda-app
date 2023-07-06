@@ -9,7 +9,6 @@
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "build:fonts": "ttf2woff public/fonts/Glitten.ttf public/fonts/Glitten.woff2 && ttf2woff public/fonts/Gallient.ttf public/fonts/Gallient.woff2 "
-
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -20,6 +19,7 @@
     "@react-spring/web": "^9.7.2",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
     "firebase": "^9.22.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,7 +1,7 @@
 import Input from "./Elements/Input";
 import Button from "./Elements/Button";
 import { useState } from "react";
-import AuthContext from "../../config/auth/AuthContext.jsx"
+import AuthContext from "../../config/auth/AuthContext.jsx";
 
 const FormRegister = () => {
   const [emailUsers, setEmailUsers] = useState("");
@@ -10,7 +10,7 @@ const FormRegister = () => {
   const [showValidate, setShowValidate] = useState(false);
   const regexPass = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-  const auth = AuthContext()
+  const auth = AuthContext();
 
   const submitRegister = (e) => {
     e.preventDefault();
@@ -21,8 +21,8 @@ const FormRegister = () => {
         setShowValidate(showValidate);
       }, 5000);
     } else {
-     auth.useRegister(emailUsers, passwordUsers)
-     console.log("SUCCES REGISTER")
+      auth.useRegister(emailUsers, passwordUsers);
+      console.log("SUCCES REGISTER");
     }
   };
 
@@ -33,33 +33,45 @@ const FormRegister = () => {
         <p className="text-1xl font-normal tracking-widest text-zinc-600">
           Please Enter Your Detail
         </p>
-        <Input
-          children="Username"
-          type="text"
-          id="username"
-          htmlFor="username"
-        />
-        <Input
-          children="Email"
-          type="text"
-          id="email"
-          htmlFor="email"
-          onchange={(e) => setEmailUsers(e.target.value)}
-        />
-        <Input
-          children="Password"
-          type="password"
-          id="pass"
-          htmlFor="pass"
-          onchange={(e) => setPasswordUsers(e.target.value)}
-        />
-        <Input
-          children="Confirm Password"
-          type="password"
-          id="confirmpass"
-          htmlFor="confirmpass"
-          onchange={(e) => setConfirmPassword(e.target.value)}
-        />
+        <div className="flex flex-col gap-1 mt-7">
+          <Input
+            variant="formAuth"
+            children="Username"
+            type="text"
+            id="username"
+            htmlFor="username"
+          />
+        </div>
+        <div className="flex flex-col gap-1 mt-7">
+          <Input
+            variant="formAuth"
+            children="Email"
+            type="text"
+            id="email"
+            htmlFor="email"
+            onchange={(e) => setEmailUsers(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col gap-1 mt-7">
+          <Input
+            variant="formAuth"
+            children="Password"
+            type="password"
+            id="pass"
+            htmlFor="pass"
+            onchange={(e) => setPasswordUsers(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col gap-1 mt-7">
+          <Input
+            variant="formAuth"
+            children="Confirm Password"
+            type="password"
+            id="confirmpass"
+            htmlFor="confirmpass"
+            onchange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
         {showValidate && (
           <p className="text-red-700 text-sm self-start ml-6 mt-2">
             {confirmPassword !== passwordUsers

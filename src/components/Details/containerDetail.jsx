@@ -5,26 +5,29 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartSlice"
-import data from "../../TemplateData.json";
+import useGet from "../../config/api";
 
 const ContainerDetail = () => {
   const params = useParams();
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
   const dispatch = useDispatch();
+  const {data, loading, error} = useGet("https://ill-pink-bison-sari.cyclic.app/products")
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const result = data.find((data) => data.id === params.id);
-      setProduct(result || null);
+      if(data.length > 0){
+        const result = data.find((data) => data.id === parseInt(params.id));
+        setProduct(result);
+      }
     };
 
     fetchProduct();
-  }, [params.id]);
+  }, [params.id, data]);
 
   return (
     <div className="flex flex-col justify-center items-center md:max-w-[1024px] lg:max-w-[1200px] xl:max-w-[1600px] mx-auto px-3 mb-20 mt-14">
       <div className="flex flex-col xl:justify-center md:flex-row gap-5 w-full lg:h-[650px] px-2">
-        <HeroProduct product={product} />
+        <HeroProduct product={product} isLoading={loading} />
         <div className="flex md:w-5/12 xl:w-4/12 h-full flex-col gap-2">
           <DescriptionProduct product={product} />
           <ProductVariants product={product} />

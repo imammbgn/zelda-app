@@ -9,15 +9,15 @@ const FormLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const auth = AuthContext()
+  const auth = AuthContext();
 
   const handleLoginUsers = (e) => {
     e.preventDefault();
-    auth.useLogin(email, password)
+    auth.useLogin(email, password);
   };
 
   const loginWithGoogle = () => {
-    auth.useLoginWithGoogle()
+    auth.useLoginWithGoogle();
   };
 
   return (
@@ -27,26 +27,32 @@ const FormLogin = () => {
         <p className="text-1xl font-normal tracking-widest text-zinc-600">
           Welcome To Zelda
         </p>
-        <Input
-          children="User Name or Email"
-          type="text"
-          id="username"
-          htmlFor="username"
-          onchange={(e) => setEmail(e.target.value)}
-        />
-        <Input
-          children="Password"
-          type="password"
-          id="pass"
-          htmlFor="pass"
-          onchange={(e) => setPassword(e.target.value)}
-        />
+        <div className="flex flex-col gap-1 mt-7">
+          <Input
+          variant="formAuth"
+            children="User Name or Email"
+            type="text"
+            id="username"
+            htmlFor="username"
+            onchange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col gap-1 mt-7">
+          <Input
+          variant="formAuth"
+            children="Password"
+            type="password"
+            id="pass"
+            htmlFor="pass"
+            onchange={(e) => setPassword(e.target.value)}
+          />
+        </div>
         <div className="flex w-full max-w-[320px] justify-end mt-1">
           <ForgetPass />
         </div>
-        {!auth.isIncorrect ? null :
+        {!auth.isIncorrect ? null : (
           <p className="text-red-600 mt-3">username or password incorrect!</p>
-        }
+        )}
         <Button type="submit">SIGN IN</Button>
         <ToRegister />
         <div

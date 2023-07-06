@@ -13,11 +13,11 @@ const DisplayItem = ({ datas }) => {
               key={data.id}
             >
               <Link to={`/product/${data.id}`} preventScrollReset={true}>
-                <div className="flex justify-center relative w-[180px] h-[200px] lg:w-[275px] lg:h-[300px] mb-5 shadow-xl shadow-gray-200 overflow-hidden cursor-pointer">
+                <div className="flex justify-center relative w-[180px] h-[200px] lg:w-[248px] lg:h-[248px] mb-5 shadow-xl shadow-gray-200 overflow-hidden cursor-pointer">
                   <div
                     className="w-full h-full bg-center bg-cover scale-110"
                     style={{
-                      backgroundImage: `url(${data.img})`,
+                      backgroundImage: `url(${data.image})`,
                     }}
                   ></div>
                 </div>

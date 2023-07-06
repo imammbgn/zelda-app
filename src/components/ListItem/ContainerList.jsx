@@ -1,29 +1,25 @@
 import OrderList from "./Elements/OrderList";
 import Button from "./Elements/Button";
 import DisplayItem from "./DisplayItem";
-import data from "../../TemplateData.json";
 import ListNav from "./Elements/ListNav";
 import { useState, useEffect, useRef } from "react";
-import ArrowCircleRightSharpIcon from "@mui/icons-material/ArrowCircleRightSharp";
-import ArrowCircleLeftSharpIcon from "@mui/icons-material/ArrowCircleLeftSharp";
+import useGet from "../../config/api";
+import ArrowRight from "../Article/Button/ArrowRight";
+import ArrowLeft from "../Article/Button/ArrowLeft";
 
 const ContainerList = ({ scroll }) => {
   const [filterTerm, setFilterTerm] = useState("");
-  const [displayData, setDisplayData] = useState([]);
   const [show, setShow] = useState(false);
   const [isActive, setIsActive] = useState("");
   const sliderRef = useRef(null);
-
+  const {data, loading, error} = useGet("https://ill-pink-bison-sari.cyclic.app/products")
+  
   const toLeft = () => {
-    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft - 611;
+    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft - 575;
   };
   const toRight = () => {
-    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft + 618;
+    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft + 560;
   };
-
-  useEffect(() => {
-    setDisplayData(data);
-  }, []);
 
   const filterData = (category) => {
     const filteredData = data.filter((val) => {
@@ -38,7 +34,7 @@ const ContainerList = ({ scroll }) => {
   return (
     <section ref={scroll}>
       <div
-        className="relative lg:max-w-[1240px] mx-auto my-10 mt-20 mb-16 flex flex-col justify-center"
+        className="relative lg:max-w-[1112px] mx-auto my-10 mt-20 mb-16 flex flex-col justify-center"
         id="containerList"
       >
         <div className="hidden w-full lg:flex justify-between items-center mx-auto px-7">
@@ -86,26 +82,26 @@ const ContainerList = ({ scroll }) => {
             } lg:justify-between justify-center items-center px-7 mt-16`}
           >
             <DisplayItem
-              datas={filterTerm.length > 0 ? filterTerm : displayData}
+              datas={filterTerm.length > 0 ? filterTerm : data}
             />
           </div>
           <div className={`${!show ? "hidden lg:block" : "hidden"}`}>
-            <ArrowCircleRightSharpIcon
-              className="absolute top-[220px] lg:-right-3 xl:-right-16 mx-5 cursor-pointer opacity-50 hover:opacity-100"
-              fontSize="large"
-              onClick={toRight}
+            <ArrowRight
+              onclick={toRight}
+              variant="onList"
+              display="block"
             />
           </div>
           <div className={`${!show ? "hidden lg:block" : "hidden"}`}>
-            <ArrowCircleLeftSharpIcon
-              className="absolute top-[220px] lg:-left-3 xl:-left-16 mx-5 cursor-pointer opacity-50 hover:opacity-100"
-              fontSize="large"
-              onClick={toLeft}
+            <ArrowLeft
+              onclick={toLeft}
+              variant="onList"
+              display="block"
             />
           </div>
         </div>
         <button
-          className="hidden lg:block w-60 self-center px-7 py-3 mt-6 mb-3 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 text-lg font-montserrat tracking-wide"
+          className="hidden lg:block w-80 self-center px-7 py-3 mt-6 mb-3 bg-zinc-900 hover:bg-zinc-700 text-zinc-100 text-lg font-montserrat tracking-wide"
           onClick={() => setShow(!show)}
         >
           LOAD MORE

@@ -1,38 +1,31 @@
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import SearchBar from "./SearchBar";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AuthContext from "../../config/auth/AuthContext";
-import data from "../../TemplateData.json";
+import { useReduceQty } from "../utils/useReduceQty";
+import NotifPopUp from "./Elements/NotifPopUp";
+import { useNotifCart } from "../utils/useNotifCart";
+import CartIcon from "../ListItem/Elements/CartIcon";
+import DropdownLayout from "./Elements/DropdownLayout";
+import useGet from "../../config/api";
 
 const Navbar = ({ onclick }) => {
-  const cart = useSelector((state) => state.cart.data);
-  // const dataLogin = useSelector((state) => state.login.auth); // redux state login
   const [offCanvas, setOffCanvas] = useState(false);
-  const [totalQty, setTotalQty] = useState(0);
   const [searchValue, setSearchValue] = useState("");
+  const [dropDown, setDropDown] = useState(false);
+  const totalQty = useReduceQty();
+  const navigate = useNavigate();
+  const { data, loading, error } = useGet("https://ill-pink-bison-sari.cyclic.app/products")
 
   const auth = AuthContext();
 
-  useEffect(() => {
-    const cartQty = cart
-      .map((item) => item.qty)
-      .reduce((acc, cur) => acc + cur, 0);
-    setTotalQty(cartQty);
-  }, [cart]);
-
-  const [isEmptyCart, setIsEmptyCart] = useState(false);
+  const { isEmptyCart, handleEmptyCart } = useNotifCart();
 
   const toCart = () => {
     if (totalQty < 1) {
-      setIsEmptyCart(!isEmptyCart);
-      setTimeout(() => {
-        setIsEmptyCart(false);
-      }, 2500);
-      return clearTimeout();
+      handleEmptyCart();
     }
     return null;
   };
@@ -67,7 +60,7 @@ const Navbar = ({ onclick }) => {
       } z-50`}
     >
       <div
-        className={`flex w-full justify-between items-center h-20 lg:h-[86px] min-[1440px]:h-28 lg:max-w-[1240px] md:w-auto mx-auto px-7 transition-all duration-500 ${
+        className={`flex w-full justify-between items-center h-20 lg:h-[86px] px-5 lg:px-0 min-[1440px]:h-28 lg:max-w-[1112px] md:w-auto mx-auto transition-all duration-500 ${
           scrollPosition > 30 ? "bg-zinc-800" : "bg-slate-50"
         } z-10`}
       >
@@ -79,15 +72,16 @@ const Navbar = ({ onclick }) => {
           />
         </div>
         <h1
-          className={`w-auto lg:ml-[50px] font-semibold text-4xl cursor-pointer font-gallient tracking-wide ${
+          className={`w-auto font-semibold text-4xl ml-7 mt-2 lg:mt-0 lg:ml-0 cursor-pointer font-gallient tracking-wide ${
             scrollPosition > 30 && "text-zinc-50"
           }`}
         >
           <Link to="/">Zelda</Link>
         </h1>
-        <ul className="lg:flex hidden gap-8 mr-5 cursor-pointer">
+
+        <ul className="lg:flex hidden gap-5 cursor-pointer">
           <li
-            className={`px-4 text-sm cursor-pointer ${
+            className={`px-4 text-sm font-semibold cursor-pointer ${
               scrollPosition > 30 && "text-zinc-50"
             }`}
           >
@@ -96,7 +90,7 @@ const Navbar = ({ onclick }) => {
             </Link>
           </li>
           <li
-            className={`px-4 text-sm cursor-pointer ${
+            className={`px-4 text-sm font-semibold cursor-pointer ${
               scrollPosition > 30 && "text-zinc-50"
             }`}
             onClick={onclick}
@@ -104,33 +98,33 @@ const Navbar = ({ onclick }) => {
             CATEGORIES
           </li>
           <li
-            className={`px-4 text-sm cursor-pointer ${
+            className={`px-4 text-sm font-semibold cursor-pointer ${
               scrollPosition > 30 && "text-zinc-50"
             }`}
           >
-            ABOUT
+            <Link to="/contact">CONTACT</Link>
           </li>
         </ul>
-        <ul className="flex">
+
+        <ul className="flex justify-center items-center lg:mb-1">
           <li onClick={toCart}>
-            <Link to={`${totalQty > 0 ? "/cart" : ""}`} className="flex">
+            <Link
+              to={`${totalQty > 0 ? "/cart" : "/"}`}
+              className="flex justify-center items-center"
+            >
               <div className="relative w-content">
-                <ShoppingCartIcon
-                  className="cursor-pointer"
-                  sx={[scrollPosition > 30 && { color: "white" }]}
-                  fontSize="medium"
-                />
+                <CartIcon position={scrollPosition} />
                 <div
                   className={`${
                     totalQty > 0 ? "flex" : "hidden"
-                  } absolute -top-5 -left-4 h-7 px-2 bg-red-500 items-center justify-center 
+                  } absolute -top-4 -left-2 h-7 px-2 bg-red-500 items-center justify-center 
             text-slate-50 font-medium rounded-2xl`}
                 >
                   {totalQty}
                 </div>
               </div>
               <p
-                className={`px-2 text-sm cursor-pointer hidden lg:inline-block mt-1 ${
+                className={`px-2 text-sm font-semibold cursor-pointer hidden lg:inline-block mt-1 ${
                   scrollPosition > 30 && "text-zinc-50"
                 }`}
               >
@@ -141,39 +135,47 @@ const Navbar = ({ onclick }) => {
           <li>
             <SearchBar position={scrollPosition} />
           </li>
+          <li className="flex justify-center items-center">
+            <div className="hidden lg:flex flex-row justify-center items-center py-3">
+              <div
+                className={`text-sm font-semibold tracking-wide ${
+                  scrollPosition > 30 && "text-zinc-50"
+                }`}
+              >
+                {localStorage.length === 0 && (
+                  <button
+                    className="px-4 py-2 text-sm tracking-wider hover:border-2 hover:bg-zinc-50 hover:border-zinc-800 hover:text-zinc-800 transition-all duration-300 cursor-pointer bg-zinc-900 rounded-full text-center text-zinc-50 mt-1"
+                    onClick={() => {
+                      if (localStorage.length === 0) {
+                        navigate("/login");
+                      }
+                      return null;
+                    }}
+                  >
+                    LOGIN
+                  </button>
+                )}
+              </div>
+
+              {localStorage.length > 0 && (
+                <div
+                  className={`flex relative border-[2.5px] ${scrollPosition > 30 ? "border-zinc-50" : "border-zinc-800" } w-10 h-10 rounded-full cursor-pointer transition-all duration-300 mt-1 justify-center items-center`}
+                  onClick={() => setDropDown(!dropDown)}
+                >
+                  <div>
+                  <p className={`text-md font-semibold ${scrollPosition > 30 && "text-zinc-50"}`}>{localStorage.getItem("emailUser").slice(0, 2).toUpperCase()}</p>
+                  </div>
+                  {dropDown && <DropdownLayout onclick={handleLogout} />}
+                </div>
+              )}
+            </div>
+          </li>
         </ul>
-        <div className="hidden lg:flex flex-row justify-center items-center gap-10 px-3 py-3">
-          <Link to="/login">
-            <div
-              className={`px-2 text-sm font-semibold cursor-pointer tracking-wide ${
-                scrollPosition > 30 && "text-zinc-50"
-              }`}
-            >
-              {localStorage.length > 0
-                ? `HI ${localStorage.getItem("emailUser") || ""}`
-                : "SIGN IN"}
-            </div>
-          </Link>
-          {localStorage.length > 0 && (
-            <div
-              className="bg-zinc-800 text-sm text-white font-semibold tracking-wider
-           px-4 py-2 rounded-full cursor-pointer hover:bg-slate-50 hover:text-zinc-800 
-           hover:border-2 hover:border-zinc-800 transition-all duration-300"
-              onClick={handleLogout}
-            >
-              LOGOUT
-            </div>
-          )}
-        </div>
       </div>
 
-      {isEmptyCart ? (
-        <div className="fixed top-24 md:top-32 right-[50%] translate-x-[50%] z-10">
-          <div className="w-full rounded-xl px-3 h-[40px] bg-red-600 flex justify-center items-center shadow-lg duration-500 ease-in-out">
-            <p className="font-semibold text-slate-50">Keranjang Kosong</p>
-          </div>
-        </div>
-      ) : null}
+      {isEmptyCart ? <NotifPopUp /> : null}
+
+      {/* SECTION MOBILE */}
 
       <div
         className={`fixed bg-zinc-900 top-0 h-screen w-full z-10 py-10 transition-all duration-300 ${
@@ -186,7 +188,7 @@ const Navbar = ({ onclick }) => {
             type="text"
             id="search"
             placeholder="Search.."
-            className="w-9/12 h-12 text-xl px-3 py-2 rounded-lg"
+            className="w-9/12 h-12 text-xl px-3 py-2 rounded-lg bg-zinc-50"
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <div
@@ -209,7 +211,12 @@ const Navbar = ({ onclick }) => {
                     key={val.id}
                   >
                     <li className="text-lg border-b-2 border-zinc-200 pb-1 w-full h-full text-center hover:text-zinc-400">
-                      <Link to={`/product/${val.id}`} onClick={() => setOffCanvas(!offCanvas)}>{val.name}</Link>
+                      <Link
+                        to={`/product/${val.id}`}
+                        onClick={() => setOffCanvas(!offCanvas)}
+                      >
+                        {val.name}
+                      </Link>
                     </li>
                   </ul>
                 );
@@ -245,11 +252,18 @@ const Navbar = ({ onclick }) => {
           <li className="text-3xl  font-medium text-slate-50">ABOUT</li>
           <li>
             <div className="text-3xl cursor-pointer tracking-wide font-medium text-slate-50">
-              <Link to="/login">
+              <p
+                onClick={() => {
+                  if (localStorage.length === 0) {
+                    navigate("/login");
+                  }
+                  return null;
+                }}
+              >
                 {localStorage.length > 0
                   ? `HI ${localStorage.getItem("emailUser") || ""}`
                   : "LOGIN"}
-              </Link>
+              </p>
             </div>
           </li>
           <li>

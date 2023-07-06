@@ -21,7 +21,7 @@ const cartSlice = createSlice({
             state.data = state.data.filter((item) => item.id !== action.payload)
         },
         resetCart: (state, action) => {
-            state.data = state.data.map(item => item.qty = action)
+            state.data = []
         }
     }
 })
