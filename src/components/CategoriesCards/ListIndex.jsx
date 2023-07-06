@@ -1,5 +1,4 @@
 import Cards from "./Cards";
-import Shoes from "/images/shoes.jpg"
 
 const ListIndex = () => {
   const imgItem = [
@@ -13,7 +12,7 @@ const ListIndex = () => {
       url: "https://images.unsplash.com/photo-1612902456551-333ac5afa26e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80",
     },
     {
-      url: `${Shoes}`
+      url: "https://images.unsplash.com/photo-1457647239067-15a2a76c724e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
     }
   ];
 

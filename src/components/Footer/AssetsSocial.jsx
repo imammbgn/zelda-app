@@ -1,7 +1,7 @@
 const AssetsSocial = () => {
   return (
     <>
-      <a href="https://github.com/imammbgn" target="_blank">
+      <a href="https://github.com/imammbgn" target="_blank" alt="github" name="github">
         <svg
           width="24"
           height="24"
@@ -16,7 +16,7 @@ const AssetsSocial = () => {
         </svg>
       </a>
 
-      <a href="https://twitter.com/imammbgn" target="_blank">
+      <a href="https://twitter.com/imammbgn" target="_blank" alt="twitter" name="twitter">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -28,7 +28,7 @@ const AssetsSocial = () => {
         </svg>
       </a>
 
-      <a href="https://www.instagram.com/imammbgn" target="_blank">
+      <a href="https://www.instagram.com/imammbgn" target="_blank" alt="instagram" name="instagram">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="26"

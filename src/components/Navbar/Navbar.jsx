@@ -144,7 +144,7 @@ const Navbar = ({ onclick }) => {
               >
                 {localStorage.length === 0 && (
                   <button
-                    className="px-4 py-2 text-sm tracking-wider hover:border-2 hover:bg-zinc-50 hover:border-zinc-800 hover:text-zinc-800 transition-all duration-300 cursor-pointer bg-zinc-900 rounded-full text-center text-zinc-50 mt-1"
+                    className={`px-4 py-2 text-sm tracking-wider hover:border-2 hover:bg-zinc-50 hover:border-zinc-800 hover:text-zinc-800 transition-all duration-300 cursor-pointer ${scrollPosition > 30 ? "bg-zinc-50 text-zinc-900" : "bg-zinc-900 text-zinc-50"} rounded-full text-center mt-1`}
                     onClick={() => {
                       if (localStorage.length === 0) {
                         navigate("/login");
