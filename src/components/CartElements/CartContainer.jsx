@@ -98,26 +98,26 @@ const CartContainer = () => {
                 <div className="w-full md:w-10/12 h-full flex flex-col gap-1">
                   <Input
                     children="Expiry Date"
-                    type="date"
+                    type="text"
                     id="expiry"
                     name="expiryDate"
                     htmlFor="expiry"
                     onchange={handleChange}
                     variant="formPayment"
-                    placeholder=""
+                    placeholder="mm/dd/yy"
                     value={inputUser.expiryDate}
                   />
                 </div>
                 <div className="w-full md:w-10/12 h-full flex flex-col gap-1">
                   <Input
                     children="CVC"
-                    type="date"
+                    type="text"
                     id="cvc"
                     name="cvcDate"
                     htmlFor="cvc"
                     onchange={handleChange}
                     variant="formPayment"
-                    placeholder=""
+                    placeholder="mm/dd/yy"
                     value={inputUser.cvcDate}
                   />
                 </div>

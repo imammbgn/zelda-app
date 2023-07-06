@@ -72,7 +72,7 @@ const Navbar = ({ onclick }) => {
           />
         </div>
         <h1
-          className={`w-auto font-semibold text-4xl ml-7 mt-2 lg:mt-0 lg:ml-0 cursor-pointer font-gallient tracking-wide ${
+          className={`w-auto font-semibold text-4xl ml-5 mt-2 lg:mt-0 lg:ml-0 cursor-pointer font-gallient ${
             scrollPosition > 30 && "text-zinc-50"
           }`}
         >
