@@ -4,7 +4,7 @@ import InputArea from "./InputArea";
 const ContactContainer = () => {
   return (
     <section className="text-gray-600 body-font relative">
-      <div className="container px-5 py-14 mx-auto">
+      <div className="container px-5 mx-auto py-10 lg:py-14">
         <div className="flex flex-col text-center w-full mb-8">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-6 text-gray-900">
             Contact Me

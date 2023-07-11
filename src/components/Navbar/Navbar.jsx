@@ -249,7 +249,7 @@ const Navbar = ({ onclick }) => {
           >
             CATEGORIES
           </li>
-          <li className="text-3xl  font-medium text-slate-50">ABOUT</li>
+          <li className="text-3xl  font-medium text-slate-50"><Link to="/contact">CONTACT</Link></li>
           <li>
             <div className="text-3xl cursor-pointer tracking-wide font-medium text-slate-50">
               <p
