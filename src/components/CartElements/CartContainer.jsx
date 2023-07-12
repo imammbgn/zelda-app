@@ -64,11 +64,9 @@ const CartContainer = () => {
         <OrderSummary total={total} onclick={handleShowModal} />
 
         {/* modal checkout */}
-        {showModal && (
-          <>
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"></div>
+            {showModal && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"></div>}
             <form onSubmit={isCheckOut}>
-              <div className="container flex flex-col gap-8 rounded-lg max-w-xs md:max-w-xl px-7 md:px-10 py-12 justify-center items-center absolute md:fixed z-10 top-28 md:top-32 right-[50%] translate-x-[50%] bg-zinc-300">
+              <div className={`container transition-all duration-500 ${showModal ? "scale-100" : "scale-0"} flex flex-col gap-8 rounded-lg max-w-xs md:max-w-xl px-7 md:px-10 py-12 justify-center items-center absolute md:fixed z-10 top-28 md:top-32 right-[50%] translate-x-[50%] bg-zinc-300`}>
                 <div className="w-full md:w-10/12 h-full flex flex-col gap-1">
                   <Input
                     children="Fullname"
@@ -140,8 +138,6 @@ const CartContainer = () => {
                 </div>
               </div>
             </form>
-          </>
-        )}
 
         {isEmptyCart && <NotifPopUp />}
       </div>

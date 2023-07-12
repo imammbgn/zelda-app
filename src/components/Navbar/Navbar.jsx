@@ -2,7 +2,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import SearchBar from "./SearchBar";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AuthContext from "../../config/auth/AuthContext";
 import { useReduceQty } from "../utils/useReduceQty";
 import NotifPopUp from "./Elements/NotifPopUp";
@@ -10,14 +10,20 @@ import { useNotifCart } from "../utils/useNotifCart";
 import CartIcon from "../ListItem/Elements/CartIcon";
 import DropdownLayout from "./Elements/DropdownLayout";
 import useGet from "../../config/api";
+import useOutDropdown from "../utils/useOutDropdown";
 
 const Navbar = ({ onclick }) => {
   const [offCanvas, setOffCanvas] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [dropDown, setDropDown] = useState(false);
+  const profileDropRef = useRef();
   const totalQty = useReduceQty();
   const navigate = useNavigate();
-  const { data, loading, error } = useGet("https://ill-pink-bison-sari.cyclic.app/products")
+  const { data, loading, error } = useGet(
+    "https://ill-pink-bison-sari.cyclic.app/products"
+  );
+
+  useOutDropdown(profileDropRef, setDropDown);
 
   const auth = AuthContext();
 
@@ -144,7 +150,11 @@ const Navbar = ({ onclick }) => {
               >
                 {localStorage.length === 0 && (
                   <button
-                    className={`px-4 py-2 text-sm tracking-wider hover:border-2 hover:bg-zinc-50 hover:border-zinc-800 hover:text-zinc-800 transition-all duration-300 cursor-pointer ${scrollPosition > 30 ? "bg-zinc-50 text-zinc-900" : "bg-zinc-900 text-zinc-50"} rounded-full text-center mt-1`}
+                    className={`px-4 py-2 text-sm tracking-wider hover:border-2 hover:bg-zinc-50 hover:border-zinc-800 hover:text-zinc-800 transition-all duration-300 cursor-pointer ${
+                      scrollPosition > 30
+                        ? "bg-zinc-50 text-zinc-900"
+                        : "bg-zinc-900 text-zinc-50"
+                    } rounded-full text-center mt-1`}
                     onClick={() => {
                       if (localStorage.length === 0) {
                         navigate("/login");
@@ -159,13 +169,29 @@ const Navbar = ({ onclick }) => {
 
               {localStorage.length > 0 && (
                 <div
-                  className={`flex relative border-[2.5px] ${scrollPosition > 30 ? "border-zinc-50" : "border-zinc-800" } w-10 h-10 rounded-full cursor-pointer transition-all duration-300 mt-1 justify-center items-center`}
+                  ref={profileDropRef}
+                  className={`flex relative border-[2.5px] ${
+                    scrollPosition > 30 ? "border-zinc-50" : "border-zinc-800"
+                  } w-10 h-10 rounded-full cursor-pointer transition-all duration-300 mt-1 justify-center items-center`}
                   onClick={() => setDropDown(!dropDown)}
                 >
                   <div>
-                  <p className={`text-md font-semibold ${scrollPosition > 30 && "text-zinc-50"}`}>{localStorage.getItem("emailUser").slice(0, 2).toUpperCase()}</p>
+                    <p
+                      className={`text-md font-semibold ${
+                        scrollPosition > 30 && "text-zinc-50"
+                      }`}
+                    >
+                      {localStorage
+                        .getItem("emailUser")
+                        .slice(0, 2)
+                        .toUpperCase()}
+                    </p>
                   </div>
-                  {dropDown && <DropdownLayout onclick={handleLogout} />}
+                  {dropDown && (
+                    <DropdownLayout
+                      onclick={handleLogout}
+                    />
+                  )}
                 </div>
               )}
             </div>
@@ -249,7 +275,9 @@ const Navbar = ({ onclick }) => {
           >
             CATEGORIES
           </li>
-          <li className="text-3xl  font-medium text-slate-50"><Link to="/contact">CONTACT</Link></li>
+          <li className="text-3xl  font-medium text-slate-50">
+            <Link to="/contact">CONTACT</Link>
+          </li>
           <li>
             <div className="text-3xl cursor-pointer tracking-wide font-medium text-slate-50">
               <p

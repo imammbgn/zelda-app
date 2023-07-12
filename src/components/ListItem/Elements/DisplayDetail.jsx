@@ -8,12 +8,17 @@ const DisplayDetail = ({ name, price, id }) => {
   const dispatch = useDispatch();
   const [showPop, setShowPop] = useState(false);
 
-  const PopupAlert = () => {
+  const PopupAlert = (add) => {
     setShowPop(!showPop);
     setTimeout(() => {
       setShowPop(false);
     }, 2000);
-    dispatch(addToCart({ id, qty: 1 }));
+    if(add === "cart"){
+      dispatch(addToCart({ id, qty: 1 }));
+    }
+    else{
+      console.log("add wishlist")
+    }
   };
 
   return (
@@ -25,7 +30,7 @@ const DisplayDetail = ({ name, price, id }) => {
           </h2>
           <p className="text-md cursor-pointer mb-2">{price}</p>
         </Link>
-        <DisplayBtn onclick={() => PopupAlert()} />
+        <DisplayBtn onclick={PopupAlert} />
       </div>
       {showPop && (
         <div className="fixed bottom-10 right-[50%] translate-x-[50%] md:translate-x-0 md:right-6 z-10">

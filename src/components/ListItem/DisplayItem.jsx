@@ -6,7 +6,7 @@ const DisplayItem = ({ datas }) => {
   return (
     <>
       {datas &&
-        datas.map((data) => {
+        datas?.map((data) => {
           return (
             <div
               className="flex flex-col w-4/12 lg:w-3/12 items-center"

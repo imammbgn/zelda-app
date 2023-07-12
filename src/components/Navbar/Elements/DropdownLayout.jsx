@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import DropList from "./DropList";
 
-const DropdownLayout = ({ onclick }) => {
+const DropdownLayout = ({ onclick, dropRef }) => {
   return (
     <div
       className={`absolute top-11 left-0 py-2 flex-col bg-white justify-center items-center w-40 
-       rounded-xl overflow-hidden shadow-md shadow-zinc-400`}
+       rounded-xl overflow-hidden shadow-md shadow-zinc-400`} ref={dropRef}
     >
       <Link to="/">
         <DropList title="Your Profile" link="/" />

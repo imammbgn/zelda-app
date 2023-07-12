@@ -3,7 +3,7 @@ import ListNav from "./ListNav";
 const OrderList = ({ onclick, active }) => {
 
   return (
-    <div>
+    <div className="hidden lg:block">
       <ul className="flex self-start flex-row gap-7">
         <ListNav active={active !== "" ? "" : "tab-active font-semibold"} onclick={() => onclick("")}>All Products</ListNav>
         <ListNav active={active !== "accessories" ? "" : "tab-active font-semibold"} onclick={() => onclick("accessories")}>Accesories</ListNav>

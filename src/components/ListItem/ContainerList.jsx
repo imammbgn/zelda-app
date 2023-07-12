@@ -6,20 +6,43 @@ import { useState, useEffect, useRef } from "react";
 import useGet from "../../config/api";
 import ArrowRight from "../Article/Button/ArrowRight";
 import ArrowLeft from "../Article/Button/ArrowLeft";
+import { useSelector } from "react-redux";
+import useOutDropdown from "../utils/useOutDropdown";
 
 const ContainerList = ({ scroll }) => {
-  const [filterTerm, setFilterTerm] = useState("");
   const [show, setShow] = useState(false);
-  const [isActive, setIsActive] = useState("");
-  const sliderRef = useRef(null);
-  const {data, loading, error} = useGet("https://ill-pink-bison-sari.cyclic.app/products")
-  
+  const [drop, setDrop] = useState(false);
+  const dropdownRef = useRef(null);
+  const [isActive, setIsActive] = useState("bag");
+  const scrollRef = useRef(null);
+  const { data, loading, error } = useGet(
+    "https://ill-pink-bison-sari.cyclic.app/products"
+  );
+  const [filterTerm, setFilterTerm] = useState([]);
+
   const toLeft = () => {
-    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft - 575;
+    scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - 575;
   };
   const toRight = () => {
-    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft + 560;
+    scrollRef.current.scrollLeft = scrollRef.current.scrollLeft + 560;
   };
+
+  useEffect(() => {
+    const filteredData = data.filter((val) => {
+      if(val.categories.toLowerCase().includes("bag")){
+        return val
+      }
+    })
+    setFilterTerm(filteredData)
+  }, [data]);
+
+  const slider = useSelector((state) => state.slider.range);
+
+  useEffect(() => {
+    const filteredData = data.filter((val) => val.price >= slider);
+
+    setFilterTerm(filteredData);
+  }, [slider]);
 
   const filterData = (category) => {
     const filteredData = data.filter((val) => {
@@ -31,22 +54,28 @@ const ContainerList = ({ scroll }) => {
     setFilterTerm(filteredData);
   };
 
+  useOutDropdown(dropdownRef, setDrop);
+
   return (
     <section ref={scroll}>
       <div
         className="relative lg:max-w-[1112px] mx-auto my-10 mt-20 mb-16 flex flex-col justify-center"
         id="containerList"
       >
-        <div className="hidden w-full lg:flex justify-between items-center mx-auto px-7">
+        <div className="ml-28 lg:ml-0 w-[70%] lg:w-full lg:flex justify-between items-center mx-auto px-7">
           <OrderList active={isActive} onclick={filterData} />
-          <Button />
+          <Button
+            onclick={() => setDrop(!drop)}
+            show={drop}
+            dropRef={dropdownRef}
+          />
         </div>
 
         <details className="lg:hidden absolute top-0 left-5 dropdown mb-32">
-          <summary className="m-1 py-1 px-8 rounded-md justify-center items-center text-center bg-neutral-focus text-slate-100">
-            Filter
+          <summary className="flex w-[98px] list-none h-8 bg-zinc-900 rounded-full justify-center items-center text-center text-slate-50 text-xs font-medium">
+            FILTER
           </summary>
-          <ul className="p-2 shadow menu dropdown-content z-[1] bg-slate-50 rounded-box w-52 gap-2">
+          <ul className="px-[16px] py-[20px] mt-3 menu dropdown-content z-[1] bg-zinc-900 rounded-box w-52 gap-2 shadow-md shadow-zinc-600">
             <ListNav tab="false" onclick={() => filterData("")}>
               All Products
             </ListNav>
@@ -72,7 +101,7 @@ const ContainerList = ({ scroll }) => {
           className={`w-full ${
             !show ? "overflow-x-scroll scroll" : ""
           } whitespace-nowrap scroll-smooth scrollbar-hide`}
-          ref={sliderRef}
+          ref={scrollRef}
         >
           <div
             className={`w-full flex ${
@@ -81,23 +110,13 @@ const ContainerList = ({ scroll }) => {
                 : "flex-wrap gap-20 lg:gap-0"
             } lg:justify-between justify-center items-center px-7 mt-16`}
           >
-            <DisplayItem
-              datas={filterTerm.length > 0 ? filterTerm : data}
-            />
+            <DisplayItem datas={filterTerm} />
           </div>
           <div className={`${!show ? "hidden lg:block" : "hidden"}`}>
-            <ArrowRight
-              onclick={toRight}
-              variant="onList"
-              display="block"
-            />
+            <ArrowRight onclick={toRight} variant="onList" display="block" />
           </div>
           <div className={`${!show ? "hidden lg:block" : "hidden"}`}>
-            <ArrowLeft
-              onclick={toLeft}
-              variant="onList"
-              display="block"
-            />
+            <ArrowLeft onclick={toLeft} variant="onList" display="block" />
           </div>
         </div>
         <button

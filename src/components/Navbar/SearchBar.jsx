@@ -22,7 +22,7 @@ const SearchBar = ({ position }) => {
         onChange={(e) => setSearchValue(e.target.value)}
       />
         <div
-          className={`absolute top-9 left-8 flex-col bg-white justify-center items-center w-full rounded-b-xl overflow-hidden z-10`}
+          className={`absolute top-9 left-8 flex-col bg-white justify-center items-center w-full rounded-b-xl overflow-hidden z-10 shadow-zinc-400 shadow-md`}
         >
           {data
             .filter((val) => {
