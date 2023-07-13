@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { isSlider } from "../../../redux/actions/sliderSlice";
 
-const DropSort = ({ show, dropRef }) => {
+const DropSort = ({ show, dropRef, stateOption, setStateOption }) => {
   const [slider, setSlider] = useState(50000);
   const dispatch = useDispatch();
+
+  const handleOptions = (option) => {
+    setStateOption(option)
+  }
 
   useEffect(() => {
     dispatch(isSlider(slider));
@@ -45,19 +49,19 @@ const DropSort = ({ show, dropRef }) => {
         </div>
       </div>
           <div className="flex gap-2">
-          <input type="checkbox" id="low" className="w-5 h-5 rounded-full"/>
+          <input type="radio" checked={stateOption === "low"} onChange={() => handleOptions("low")}  id="low" name="priceRange" className="w-5 h-5"/>
           <label htmlFor="low" className="text-sm">RP 50000 - RP 150000</label>
           </div>
           <div className="flex gap-2">
-          <input type="checkbox" id="mid" className="w-5 h-5 rounded-full"/>
+          <input type="radio" checked={stateOption === "mid"} onChange={() => handleOptions("mid")}  id="mid" name="priceRange" className="w-5 h-5"/>
           <label htmlFor="mid" className="text-sm">RP 100000 - RP 350000</label>
           </div>
           <div className="flex gap-2">
-          <input type="checkbox" id="high" className="w-5 h-5 rounded-full"/>
+          <input type="radio" checked={stateOption === "high"}  onChange={() => handleOptions("high")} id="high" name="priceRange" className="w-5 h-5"/>
           <label htmlFor="high" className="text-sm">RP 350000 - RP 1000000</label>
           </div>
           <div className="flex gap-2">
-          <input type="checkbox" id="higher" className="w-5 h-5 rounded-full"/>
+          <input type="radio" checked={stateOption === "higher"} onChange={() => handleOptions("higher")}  id="higher" name="priceRange" className="w-5 h-5"/>
           <label htmlFor="higher" className="text-sm">RP &gt; 1000000</label>
           </div>
       </div>

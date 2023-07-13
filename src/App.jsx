@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/utils/ScrollToTop";
 import Cart from "./pages/cart";
@@ -15,7 +15,6 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <Suspense fallback={<h1>Please Wait..</h1>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -26,7 +25,6 @@ function App() {
           <Route path="/succesPayment" element={<SuccesPayment />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </Suspense>
     </Router>
   );
 }

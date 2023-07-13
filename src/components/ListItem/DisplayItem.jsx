@@ -13,9 +13,9 @@ const DisplayItem = ({ datas }) => {
               key={data.id}
             >
               <Link to={`/product/${data.id}`} preventScrollReset={true} aria-label={data.name}>
-                <div className="flex justify-center relative w-[180px] h-[200px] lg:w-[248px] lg:h-[248px] mb-5 shadow-xl shadow-gray-200 overflow-hidden cursor-pointer">
+                <div className="flex justify-center relative w-[180px] h-[200px] lg:w-[248px] lg:h-[250px] mb-5 shadow-xl shadow-gray-200 overflow-hidden cursor-pointer">
                   <div
-                    className="w-full h-full bg-center bg-cover scale-110"
+                    className="w-full h-full bg-center bg-cover"
                     style={{
                       backgroundImage: `url(${data.image})`,
                     }}

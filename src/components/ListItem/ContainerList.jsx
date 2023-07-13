@@ -15,10 +15,11 @@ const ContainerList = ({ scroll }) => {
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useState("bag");
   const scrollRef = useRef(null);
+  const [selectedOptions, setSelectedOptions] = useState("")
+  const [filterTerm, setFilterTerm] = useState([]);
   const { data, loading, error } = useGet(
     "https://ill-pink-bison-sari.cyclic.app/products"
   );
-  const [filterTerm, setFilterTerm] = useState([]);
 
   const toLeft = () => {
     scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - 575;
@@ -39,10 +40,33 @@ const ContainerList = ({ scroll }) => {
   const slider = useSelector((state) => state.slider.range);
 
   useEffect(() => {
-    const filteredData = data.filter((val) => val.price >= slider);
+    const filteredData = () => {
+      if(selectedOptions.length > 0){
+        let filterData = []
+        switch (selectedOptions){
+          case "low":
+            filterData = data.filter(val => val.price >= 50000 && val.price <= 150000)
+            break
+          case "mid":
+            filterData = data.filter(val => val.price >= 150000 && val.price <= 350000)
+            break
+          case "high": 
+          filterData = data.filter(val => val.price >= 350000 && val.price <= 1000000)
+            break
+          case "higher":
+            filterData = data.filter(val => val.price >= 1000000)
+            break
+        }
+        return filterData
+      }
+      else{
+        return data.filter(val => val.price >= slider)
+      }
+    }
 
-    setFilterTerm(filteredData);
-  }, [slider]);
+    const result = filteredData()
+    setFilterTerm(result);
+  }, [slider, selectedOptions]);
 
   const filterData = (category) => {
     const filteredData = data.filter((val) => {
@@ -68,6 +92,8 @@ const ContainerList = ({ scroll }) => {
             onclick={() => setDrop(!drop)}
             show={drop}
             dropRef={dropdownRef}
+            stateOption={selectedOptions}
+            setStateOption={setSelectedOptions}
           />
         </div>
 

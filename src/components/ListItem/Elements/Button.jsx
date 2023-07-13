@@ -1,6 +1,6 @@
 import DropSort from "./DropSort";
 
-const Button = ({ show, onclick, dropRef }) => {
+const Button = ({ show, onclick, dropRef, stateOption, setStateOption }) => {
   return (
     <div className="relative" ref={dropRef}>
       <div
@@ -11,7 +11,7 @@ const Button = ({ show, onclick, dropRef }) => {
           SORT BY
         </span>
       </div>
-      <DropSort show={show} />
+      <DropSort show={show} stateOption={stateOption} setStateOption={setStateOption}/>
     </div>
   );
 };

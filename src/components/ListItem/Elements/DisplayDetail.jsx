@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const DisplayDetail = ({ name, price, id }) => {
   const dispatch = useDispatch();
   const [showPop, setShowPop] = useState(false);
+  const [display, setDisplay] = useState("")
 
   const PopupAlert = (add) => {
     setShowPop(!showPop);
@@ -14,10 +15,11 @@ const DisplayDetail = ({ name, price, id }) => {
       setShowPop(false);
     }, 2000);
     if(add === "cart"){
+      setDisplay("Barang Ditambahkan Ke Keranjang")
       dispatch(addToCart({ id, qty: 1 }));
     }
     else{
-      console.log("add wishlist")
+      setDisplay("Ditambahkan Ke Wishlist")
     }
   };
 
@@ -36,7 +38,7 @@ const DisplayDetail = ({ name, price, id }) => {
         <div className="fixed bottom-10 right-[50%] translate-x-[50%] md:translate-x-0 md:right-6 z-10">
           <div className="rounded-xl px-3 h-[40px] bg-lime-600 flex justify-center items-center shadow-lg duration-500 ease-in-out">
             <p className="font-semibold text-slate-50">
-              Barang Ditambahkan Ke Keranjang
+              {display}
             </p>
           </div>
         </div>

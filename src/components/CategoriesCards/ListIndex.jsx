@@ -24,6 +24,7 @@ const ListIndex = () => {
           text="WOMENS SET"
           height="w-[330px] h-[475px] lg:w-[300px] lg:h-[445px] xl:w-[347px] xl:h-[495px]"
           pos="bg-bottom"
+          productId="7"
         />
         <div className="grid grid-rows-2 h-full items-center gap-3">
           <Cards
@@ -31,12 +32,14 @@ const ListIndex = () => {
             text="ACCESSORIES"
             height="w-[330px] h-[240px] xl:h-[240px] lg:w-[350px] lg:h-[215px]"
             pos="bg-center"
+            productId="4"
           />
           <Cards
             img={{ backgroundImage: `url(${imgItem[3].url})` }}
             text="SHOES"
             height="w-[330px] h-[240px] xl:h-[240px] lg:w-[350px] lg:h-[215px]"
             pos="bg-bottom"
+            productId="10"
           />
         </div>
         <Cards
@@ -44,6 +47,7 @@ const ListIndex = () => {
           text="BAG'S"
           height="w-[330px] h-[475px] lg:w-[300px] lg:h-[445px] xl:w-[347px] xl:h-[495px]"
           pos="bg-bottom"
+          productId="18"
         />
       </div>
     </>

@@ -15,7 +15,7 @@ const SearchBar = ({ position }) => {
         <SearchIcon position={position} />
       </label>
       <input
-        className={`px-2 py-1 h-7 mx-2 input w-full rounded-full max-w-xs border-2 border-zinc-900`}
+        className={`px-2 py-1 h-7 mx-2 input w-full rounded-full max-w-xs border-2 bg-white border-zinc-900`}
         type="search"
         id="searchIcon"
         name="searchIcon"
