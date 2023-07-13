@@ -17,7 +17,7 @@ const Input = ({
     },
     formPayment: {
       inputStyle:
-        `bg-gray-50 border border-gray-400 text-gray-900 text-md outline-none rounded-lg bg-zinc-50 focus:ring-blue-500 ${value.length > 0 ? "focus:border-emerald-500" : "focus:border-red-500"} block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`,
+        `bg-gray-50 border border-gray-400 text-gray-900 text-sm md:text-md outline-none rounded-lg bg-zinc-50 focus:ring-blue-500 ${value ? "focus:border-emerald-500" : "focus:border-red-500"} block w-full p-2 md:p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`,
       labelStyle: "text-zinc-800 text-lg font-medium",
     },
   };

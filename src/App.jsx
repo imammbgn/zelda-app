@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/utils/ScrollToTop";
 import Cart from "./pages/cart";
@@ -7,9 +6,8 @@ import Home from "./pages/home";
 import PageNotFound from "./pages/PageNotFound";
 import SuccesPayment from "./pages/succesCheckOut";
 import Contact from "./pages/contact";
-
-const Login = lazy(() => import("./pages/login"));
-const Register = lazy(() => import("./pages/register"));
+import Login from "./pages/login"
+import Register from "./pages/register"
 
 function App() {
   return (

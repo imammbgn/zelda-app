@@ -39,7 +39,6 @@ const TableCart = ({ totalState }) => {
         const updatedQty = item.qty + value;
         const newQty = updatedQty >= 0 ? updatedQty : 0;
         const updatedTotal = item.price * newQty;
-        console.log(newQty);
         if (newQty === 0) {
           dispatch(removeFromCart(id));
           return null;
