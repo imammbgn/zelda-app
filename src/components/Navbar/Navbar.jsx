@@ -11,11 +11,13 @@ import CartIcon from "../ListItem/Elements/CartIcon";
 import DropdownLayout from "./Elements/DropdownLayout";
 import useGet from "../../config/api";
 import useOutDropdown from "../utils/useOutDropdown";
+import useToast from "../utils/useToast";
 
 const Navbar = ({ onclick }) => {
   const [offCanvas, setOffCanvas] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [dropDown, setDropDown] = useState(false);
+  const { showPop, toastClick } = useToast()
   const profileDropRef = useRef();
   const totalQty = useReduceQty();
   const navigate = useNavigate();
@@ -27,11 +29,9 @@ const Navbar = ({ onclick }) => {
 
   const auth = AuthContext();
 
-  const { isEmptyCart, handleEmptyCart } = useNotifCart();
-
   const toCart = () => {
     if (totalQty < 1) {
-      handleEmptyCart();
+      toastClick();
     }
     return null;
   };
@@ -77,13 +77,17 @@ const Navbar = ({ onclick }) => {
             fontSize="medium"
           />
         </div>
-        <h1
-          className={`w-auto font-semibold text-4xl ml-5 mt-2 lg:mt-0 lg:ml-0 cursor-pointer font-gallient ${
-            scrollPosition > 30 && "text-zinc-50"
-          }`}
+        <div
+          className={`ml-5 lg:ml-0 cursor-pointer 
+          `}
         >
-          <Link to="/">Zelda</Link>
-        </h1>
+          <Link to="/">
+            <picture>
+            <source srcSet={scrollPosition > 30 ? "/images/zelda-white.png" : undefined} />
+            <img src="/images/zelda-black.png" className="w-[90px] lg:w-[110px]" alt="logo"/>
+            </picture>
+          </Link>
+        </div>
 
         <ul className="lg:flex hidden gap-5 cursor-pointer">
           <li
@@ -199,7 +203,14 @@ const Navbar = ({ onclick }) => {
         </ul>
       </div>
 
-      {isEmptyCart ? <NotifPopUp /> : null}
+      <div className="fixed flex flex-col top-24 md:top-32 right-[50%] translate-x-[50%] z-10">
+      {showPop?.map((toast) => {
+        return (
+          <NotifPopUp key={toast.id} msg="Keranjang Kosong"/>
+        )
+      })}
+      </div>
+
 
       {/* SECTION MOBILE */}
 

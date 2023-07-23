@@ -146,7 +146,7 @@ const ContainerList = ({ scroll }) => {
           </div>
         </div>
         <button
-          className="hidden lg:block w-80 self-center px-7 py-3 mt-6 mb-3 bg-zinc-900 hover:bg-zinc-700 text-zinc-100 text-lg font-montserrat tracking-wide"
+          className={`hidden ${show === true ? "lg:hidden" : "lg:block"} w-80 self-center px-7 py-3 mt-6 mb-3 bg-zinc-900 hover:bg-zinc-700 text-zinc-100 text-lg font-montserrat tracking-wide`}
           onClick={() => setShow(!show)}
         >
           LOAD MORE
