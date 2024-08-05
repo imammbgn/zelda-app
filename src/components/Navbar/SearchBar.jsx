@@ -7,7 +7,7 @@ import SearchIcon from "../ListItem/Elements/SearchIcon";
 const SearchBar = ({ position }) => {
   const [searchValue, setSearchValue] = useState("");
   const searchDebounced = useDebounce(searchValue, 500);
-  const { data } = useGet("https://ill-pink-bison-sari.cyclic.app/products");
+  const { data } = useGet("https://parseapi.back4app.com/classes/products");
 
   return (
     <div className="relative lg:flex hidden flex-row mx-5 justify-center items-center mt-1">
@@ -35,9 +35,9 @@ const SearchBar = ({ position }) => {
             })
             .map((val) => {
               return (
-                <div className="border-b-2 border-slate-200 py-2" key={val.id}>
+                <div className="border-b-2 border-slate-200 py-2" key={val.objectId}>
                   <Link
-                    to={`/product/${val.id}`}
+                    to={`/product/${val.objectId}`}
                     className="text-zinc-900 px-2 cursor-pointer"
                   >
                     {val.name}

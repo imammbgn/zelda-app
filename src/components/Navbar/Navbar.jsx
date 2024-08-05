@@ -22,7 +22,7 @@ const Navbar = ({ onclick }) => {
   const totalQty = useReduceQty();
   const navigate = useNavigate();
   const { data, loading, error } = useGet(
-    "https://ill-pink-bison-sari.cyclic.app/products"
+    "https://parseapi.back4app.com/classes/products"
   );
 
   useOutDropdown(profileDropRef, setDropDown);
@@ -245,11 +245,11 @@ const Navbar = ({ onclick }) => {
                 return (
                   <ul
                     className="px-2 py-2 flex flex-col justify-center items-center gap-3"
-                    key={val.id}
+                    key={val.objectId}
                   >
                     <li className="text-lg border-b-2 border-zinc-200 pb-1 w-full h-full text-center hover:text-zinc-400">
                       <Link
-                        to={`/product/${val.id}`}
+                        to={`/product/${val.objectId}`}
                         onClick={() => setOffCanvas(!offCanvas)}
                       >
                         {val.name}
