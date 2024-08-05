@@ -18,7 +18,7 @@ const ContainerList = ({ scroll }) => {
   const [selectedOptions, setSelectedOptions] = useState("")
   const [filterTerm, setFilterTerm] = useState([]);
   const { data, loading, error } = useGet(
-    "https://ill-pink-bison-sari.cyclic.app/products"
+    "https://parseapi.back4app.com/classes/products"
   );
 
   const toLeft = () => {
@@ -83,7 +83,7 @@ const ContainerList = ({ scroll }) => {
   return (
     <section ref={scroll}>
       <div
-        className="relative lg:max-w-[1112px] mx-auto my-10 mt-20 mb-16 flex flex-col justify-center"
+        className="relative lg:max-w-[1112px] mx-auto my-10 mt-20 mb-16 flex flex-wrap justify-center"
         id="containerList"
       >
         <div className="ml-28 lg:ml-0 w-[70%] lg:w-full lg:flex justify-between items-center mx-auto px-7">

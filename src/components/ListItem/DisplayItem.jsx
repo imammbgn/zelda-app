@@ -10,9 +10,9 @@ const DisplayItem = ({ datas }) => {
           return (
             <div
               className="flex flex-col w-4/12 lg:w-3/12 items-center"
-              key={data.id}
+              key={data.objectId}
             >
-              <Link to={`/product/${data.id}`} preventScrollReset={true} aria-label={data.name}>
+              <Link to={`/product/${data.objectId}`} preventScrollReset={true} aria-label={data.name}>
                 <div className="flex justify-center relative w-[180px] h-[200px] lg:w-[248px] lg:h-[250px] mb-5 shadow-xl shadow-gray-200 overflow-hidden cursor-pointer">
                   <div
                     className="w-full h-full bg-center bg-cover"
@@ -25,7 +25,7 @@ const DisplayItem = ({ datas }) => {
               <DisplayDetail
                 name={data.name}
                 price={`Rp ${ToRupiah(data.price)}`}
-                id={data.id}
+                id={data.objectId}
               />
             </div>
           );

@@ -11,13 +11,13 @@ const TableCart = ({ totalState }) => {
   const [total, setTotal] = useState([]);
   const dispatch = useDispatch();
 
-  const {data, loading, error} = useGet("https://ill-pink-bison-sari.cyclic.app/products")
+  const {data, loading, error} = useGet("https://parseapi.back4app.com/classes/products")
 
   useEffect(() => {
     const renderProducts = () => {
       if (data.length > 0) {
         const updatedProducts = cart.map((item) => {
-          const updateProduct = data.find((data) => data.id === item.id);
+          const updateProduct = data.find((data) => data.objectId === item.id);
           if (updateProduct) {
             return {
               ...updateProduct,
@@ -35,7 +35,7 @@ const TableCart = ({ totalState }) => {
 
   const handleCount = (id, value) => {
     const updatedProducts = products.map((item) => {
-      if (item.id === id) {
+      if (item.objectId === id) {
         const updatedQty = item.qty + value;
         const newQty = updatedQty >= 0 ? updatedQty : 0;
         const updatedTotal = item.price * newQty;
@@ -87,11 +87,11 @@ const TableCart = ({ totalState }) => {
           return (
             <tbody
               className="my-5 py-5 border-y-2 border-slate-300"
-              key={product.id}
+              key={product.objectId}
             >
               <tr className="h-[120px] flex flex-row items-center">
                 <td className="basis-1/2 flex flex-row items-center">
-                  <Link to={`/product/${product.id}`}>
+                  <Link to={`/product/${product.objectId}`}>
                     <div className="md:h-[120px] md:w-[90px] w-[70px] h-[90px] bg-slate-100">
                       <div
                         className="w-full h-full bg-center bg-cover"
@@ -100,7 +100,7 @@ const TableCart = ({ totalState }) => {
                     </div>
                   </Link>
                   <h1 className="ml-6 text-xl font-medium">
-                    <Link to={`/product/${product.id}`}>{product.name}</Link>
+                    <Link to={`/product/${product.objectId}`}>{product.name}</Link>
                   </h1>
                 </td>
                 <td className="hidden lg:block basis-1/4 text-center font-medium">
@@ -108,11 +108,11 @@ const TableCart = ({ totalState }) => {
                 </td>
                 <td className="basis-1/4 justify-center flex">
                   <div className="w-[65px] h-6 md:w-[100px] md:h-8 rounded-full bg-slate-100 flex justify-between items-center px-2">
-                    <button onClick={() => handleCount(product.id, -1)}>
+                    <button onClick={() => handleCount(product.objectId, -1)}>
                       -
                     </button>
                     <p className="font-medium">{product.qty}</p>
-                    <button onClick={() => handleCount(product.id, 1)}>
+                    <button onClick={() => handleCount(product.objectId, 1)}>
                       +
                     </button>
                   </div>
