@@ -3,6 +3,9 @@
 # Description
 This project aims to create a small-scale e-commerce platform that showcases fashion brands. The focus is on delivering an attractive and trendy online shopping experience.
 
+## Url
+https://zelda-apparel.netlify.app
+
 ## TechStack
 ReactJS, NodeJs, Firebase, TailwindCSS, Redux
 
